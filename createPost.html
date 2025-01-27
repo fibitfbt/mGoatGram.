@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ms-MY">
+<html lang="ms">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Post - mGoatGram</title>
@@ -9,33 +8,19 @@
 </head>
 <body>
   <header>
-    <nav>
-  <a href="index.html">Home</a>
-  <a href="createPost.html">Create Post</a>
-  <a href="profile.html">Profile</a>
-</nav>
     <h1>Create a Post</h1>
   </header>
   <main>
-    <form id="postForm">
-      <label for="postTitle">Post Title</label>
+    <form>
+      <label for="postTitle">Title</label>
       <input type="text" id="postTitle" placeholder="Enter your title" required>
-
-      <label for="postContent">Post Content</label>
-      <textarea id="postContent" rows="5" placeholder="Write your post here..." required></textarea>
-
-      <button type="submit">Submit Post</button>
+      <label for="postContent">Content</label>
+      <textarea id="postContent" rows="5" placeholder="Enter your content" required></textarea>
+      <button type="submit">Submit</button>
     </form>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
-  <script>
-    const form = document.getElementById('postForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Post submitted successfully!');
-    });
-  </script>
 </body>
 </html>
