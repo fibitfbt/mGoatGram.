@@ -136,3 +136,52 @@ footer {
     width: 90%;
   }
 }
+
+/* Verified Badge */
+.verified-badge {
+  background-color: #4caf50;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 10px;
+}
+
+/* Edit Profile Form */
+.edit-profile-form {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px auto;
+  display: none; /* Hidden by default */
+}
+
+.edit-profile-form input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-profile-form button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+}
+
+.edit-profile-form button:hover {
+  background-color: #45a049;
+}
+
+/* Hide form */
+.hidden {
+  display: none;
+}
