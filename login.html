@@ -21,7 +21,7 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Kod konfigurasi MiniKit diletakkan di sini
+    // Konfigurasi MiniKit
     const kit = new MiniKit({
       appName: 'mGoatGram',
       actionDescription: 'Login to mGoatGram',
@@ -35,15 +35,12 @@
         alert('Simulated login successful!');
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', 'Test User');
-        window.location.href = 'index.html';
+        window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
         alert('Simulation failed. Please try again.');
         console.error(error);
       }
     }
-
-    // Sambung Fungsi ke Butang Simulasi
-    document.getElementById('simulateLogin').addEventListener('click', simulateLogin);
 
     // Fungsi Login dengan Worldcoin
     async function worldcoinLogin() {
@@ -57,6 +54,9 @@
         console.error(error);
       }
     }
+
+    // Tambahkan Event Listener
+    document.getElementById('simulateLogin').addEventListener('click', simulateLogin);
     document.getElementById('loginButton').addEventListener('click', worldcoinLogin);
   </script>
 </body>
