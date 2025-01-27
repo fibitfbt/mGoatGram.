@@ -15,87 +15,20 @@ if (logoutButton) {
   });
 }
 
-// Simulated posts data (mock data)
-const mockPosts = [
-  {
-    id: 1,
-    username: 'nadya',
-    image: 'https://via.placeholder.com/400',
-    likes: 5,
-    comments: 3,
-  },
-  {
-    id: 2,
-    username: 'hello',
-    image: 'https://via.placeholder.com/400',
-    likes: 12,
-    comments: 7,
-  },
-];
-
-// Function to fetch posts (mock data for now)
-async function fetchPosts() {
-  const postsContainer = document.querySelector('.posts-container');
-
-  try {
-    postsContainer.innerHTML = '<p>Loading posts...</p>';
-    // Uncomment below when using a real API
-    // const response = await fetch('https://api.yourendpoint.com/posts', {
-    //   method: 'GET',
-    //   headers: {
-    //     'Authorization': `Bearer ${API_KEY}`,
-    //     'Content-Type': 'application/json',
-    //   }
-    // });
-    // if (!response.ok) throw new Error(`Failed to fetch posts: ${response.status}`);
-    // const data = await response.json();
-    renderPosts(mockPosts); // Use mock data
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    postsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
-  }
-}
-
-// Function to render posts dynamically
-function renderPosts(posts) {
-  const postsContainer = document.querySelector('.posts-container');
-  postsContainer.innerHTML = ''; // Clear previous content
-
-  if (posts.length === 0) {
-    postsContainer.innerHTML = '<p>No posts available. Create a new post!</p>';
-    return;
-  }
-
-  posts.forEach((post) => {
-    const postCard = document.createElement('div');
-    postCard.classList.add('post-card');
-    postCard.innerHTML = `
-      <div class="post-header">
-        <strong>${post.username}</strong>
-      </div>
-      <img src="${post.image}" alt="Post Image" class="post-image">
-      <div class="post-footer">
-        <p>${post.likes} Likes - ${post.comments} Comments</p>
-      </div>
-    `;
-    postsContainer.appendChild(postCard);
-  });
-}
-
-// Profile Information (Simulated Data)
-let username = 'Username';
-let profilePicture = 'user-placeholder.png'; // Default profile picture
-let isVerified = true;
+// Simulated Profile Data
+let username = localStorage.getItem('username') || 'Username';
+let profilePicture = localStorage.getItem('profilePicture') || 'user-placeholder.png';
+let isVerified = JSON.parse(localStorage.getItem('isVerified')) || false;
 let postCount = 10;
 let followerCount = 100;
 
 // Load Profile Information
 function loadProfile() {
-  document.getElementById('usernameDisplay').querySelector('.username').textContent = username;
-  document.getElementById('profilePicture').src = profilePicture;
-  document.getElementById('verifiedBadge').style.display = isVerified ? 'inline-block' : 'none';
-  document.getElementById('postCount').textContent = postCount;
-  document.getElementById('followerCount').textContent = followerCount;
+  document.querySelector('#usernameDisplay .username').textContent = username;
+  document.querySelector('#profilePicture').src = profilePicture;
+  document.querySelector('#verifiedBadge').style.display = isVerified ? 'inline-block' : 'none';
+  document.querySelector('#postCount').textContent = postCount;
+  document.querySelector('#followerCount').textContent = followerCount;
 }
 
 // Edit Profile Functionality
@@ -118,7 +51,11 @@ editProfileForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   // Update username
-  username = editUsernameInput.value.trim() || username;
+  const newUsername = editUsernameInput.value.trim();
+  if (newUsername) {
+    username = newUsername;
+    localStorage.setItem('username', username);
+  }
 
   // Update profile picture if a new file is uploaded
   const file = editProfileImageInput.files[0];
@@ -126,6 +63,7 @@ editProfileForm.addEventListener('submit', (e) => {
     const reader = new FileReader();
     reader.onload = () => {
       profilePicture = reader.result;
+      localStorage.setItem('profilePicture', profilePicture);
       loadProfile(); // Reload profile after updating
     };
     reader.readAsDataURL(file);
@@ -133,6 +71,7 @@ editProfileForm.addEventListener('submit', (e) => {
 
   // Update verified status
   isVerified = verifiedCheckbox.checked;
+  localStorage.setItem('isVerified', isVerified);
 
   // Hide the form and reload profile
   editProfileForm.classList.add('hidden');
@@ -143,9 +82,6 @@ editProfileForm.addEventListener('submit', (e) => {
 cancelEditBtn.addEventListener('click', () => {
   editProfileForm.classList.add('hidden');
 });
-
-// Call fetchPosts to load posts on page load
-fetchPosts();
 
 // Load profile on page load
 loadProfile();
