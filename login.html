@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - mGoatGram</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Muatkan Worldcoin MiniKit -->
   <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
 </head>
 <body>
@@ -13,7 +14,6 @@
   </header>
   <main>
     <div class="login-container">
-      <h2>Login with Worldcoin</h2>
       <button id="loginButton" class="login-button">Login with Worldcoin</button>
     </div>
   </main>
@@ -21,38 +21,26 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Worldcoin MiniKit Configuration
-    try {
-      console.log('Initializing Worldcoin MiniKit...');
-      const kit = new MiniKit({
-        appName: 'mGoatGram',
-        actionDescription: 'Login to mGoatGram',
-        signal: 'login',
-        enableDevelopmentMode: true, // Aktifkan Development Mode
-      });
+    const kit = new MiniKit({
+      appName: 'mGoatGram',
+      actionDescription: 'Login to mGoatGram',
+      signal: 'login',
+      enableDevelopmentMode: true,
+    });
 
-      // Simulate login
-      async function simulateLogin() {
-        try {
-          console.log('Attempting login...');
-          const result = await kit.signIn(); // Simulasi login
-          console.log('Login successful:', result);
-          alert('Simulated login successful!');
-          localStorage.setItem('isLoggedIn', 'true'); // Tetapkan status login
-          localStorage.setItem('username', 'Test User'); // Simpan nama pengguna sementara
-          window.location.href = 'index.html'; // Redirect ke halaman utama
-        } catch (error) {
-          console.error('Login failed:', error);
-          alert('Login failed. Please try again.');
-        }
+    async function simulateLogin() {
+      try {
+        const result = await kit.signIn();
+        alert('Simulated login successful!');
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', 'Test User');
+        window.location.href = 'index.html';
+      } catch (error) {
+        alert('Login failed. Please try again.');
       }
-
-      // Add login button listener
-      const loginButton = document.getElementById('loginButton');
-      loginButton.addEventListener('click', simulateLogin);
-    } catch (globalError) {
-      console.error('Error initializing MiniKit:', globalError);
     }
+
+    document.getElementById('loginButton').addEventListener('click', simulateLogin);
   </script>
 </body>
 </html>
