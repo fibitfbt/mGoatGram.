@@ -23,7 +23,7 @@
         <!-- Input Caption -->
         <input type="text" id="postTitle" placeholder="Caption..." required>
         <!-- Upload Image -->
-        <input type="file" id="postImage" accept="image/*" required>
+        <input type="file" id="postImage" accept="image/*">
         <!-- Image Preview -->
         <img id="previewImage" src="" alt="Image Preview" style="display: none; max-width: 100%; border-radius: 10px; margin: 10px 0;">
         <!-- Submit Button -->
@@ -53,7 +53,9 @@
     const postForm = document.getElementById('postForm');
     const postImage = document.getElementById('postImage');
     const previewImage = document.getElementById('previewImage');
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // API Key
+    const API_KEY = 'api_a2V5X2MxOWE1ZjBkNGZi'; // Masukkan API Key anda di sini
 
     // Handle image preview
     postImage.addEventListener('change', () => {
@@ -72,20 +74,45 @@
     });
 
     // Handle form submission
-    postForm.addEventListener('submit', (e) => {
+    postForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const title = document.getElementById('postTitle').value.trim();
       if (!title) {
         alert('Please enter a caption for the post.');
         return;
       }
-      const image = previewImage.src;
-      const newPost = { title, image };
-      posts.push(newPost);
-      localStorage.setItem('posts', JSON.stringify(posts));
-      alert('Post created successfully!');
-      postForm.reset();
-      previewImage.style.display = 'none';
+
+      const file = postImage.files[0];
+      const formData = new FormData();
+      formData.append('title', title);
+
+      // Tambah imej jika pengguna muat naik
+      if (file) {
+        formData.append('image', file);
+      }
+
+      try {
+        // Hantar permintaan ke API
+        const response = await fetch('https://api.worldcoin.org/posts', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${API_KEY}`,
+          },
+          body: formData,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to create post: ${response.status}`);
+        }
+
+        const data = await response.json();
+        alert('Post created successfully!');
+        window.location.href = 'index.html'; // Kembali ke halaman utama
+      } catch (error) {
+        console.error('Error creating post:', error);
+        alert('Failed to create post. Please try again.');
+      }
     });
   </script>
 </body>
