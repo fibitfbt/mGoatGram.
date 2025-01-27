@@ -76,3 +76,23 @@
     <button type="button" id="cancelEdit">Cancel</button>
   </form>
 </div>
+
+<div id="usernameDisplay">
+  <img id="profilePicture" src="user-placeholder.png" alt="Profile Picture" class="profile-picture">
+  <span class="username">Username</span>
+  <span id="verifiedBadge" style="display: none;">✔️</span>
+</div>
+<p>Posts: <span id="postCount">10</span> | Followers: <span id="followerCount">100</span></p>
+<button id="editProfileBtn">Edit Profile</button>
+
+<div id="editProfileForm" class="edit-profile-form hidden">
+  <h3>Edit Profile</h3>
+  <form>
+    <input type="text" id="editUsername" placeholder="New username" required>
+    <label for="editProfileImage">Update Profile Picture</label>
+    <input type="file" id="editProfileImage" accept="image/*">
+    <label><input type="checkbox" id="verifiedCheckbox"> Verified</label>
+    <button type="submit">Save Changes</button>
+    <button type="button" id="cancelEdit">Cancel</button>
+  </form>
+</div>
