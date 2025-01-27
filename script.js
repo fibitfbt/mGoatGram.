@@ -65,7 +65,70 @@ function renderPosts(posts) {
     postsContainer.innerHTML = '<p>No posts available. Create a new post!</p>';
     return;
   }
+// Profile Information (Simulated Data)
+let username = 'Username';
+let profilePicture = 'user-placeholder.png';
+let isVerified = true;
+let postCount = 10;
+let followerCount = 100;
 
+// Load Profile Information
+function loadProfile() {
+  document.getElementById('usernameDisplay').querySelector('.username').textContent = username;
+  document.getElementById('profilePicture').src = profilePicture;
+  document.getElementById('verifiedBadge').style.display = isVerified ? 'inline-block' : 'none';
+  document.getElementById('postCount').textContent = postCount;
+  document.getElementById('followerCount').textContent = followerCount;
+}
+
+// Edit Profile Functionality
+const editProfileBtn = document.getElementById('editProfileBtn');
+const editProfileForm = document.getElementById('editProfileForm');
+const editUsernameInput = document.getElementById('editUsername');
+const editProfileImageInput = document.getElementById('editProfileImage');
+const verifiedCheckbox = document.getElementById('verifiedCheckbox');
+const cancelEditBtn = document.getElementById('cancelEdit');
+
+// Show Edit Form
+editProfileBtn.addEventListener('click', () => {
+  editProfileForm.classList.remove('hidden');
+  editUsernameInput.value = username;
+  verifiedCheckbox.checked = isVerified;
+});
+
+// Save Profile Changes
+editProfileForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // Update username
+  username = editUsernameInput.value.trim() || username;
+
+  // Update profile picture if a new file is uploaded
+  const file = editProfileImageInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      profilePicture = reader.result;
+      loadProfile(); // Reload profile after updating
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // Update verified status
+  isVerified = verifiedCheckbox.checked;
+
+  // Hide the form and reload profile
+  editProfileForm.classList.add('hidden');
+  loadProfile();
+});
+
+// Cancel Edit
+cancelEditBtn.addEventListener('click', () => {
+  editProfileForm.classList.add('hidden');
+});
+
+// Load profile on page load
+loadProfile();
   posts.forEach((post) => {
     const postCard = document.createElement('div');
     postCard.classList.add('post-card');
