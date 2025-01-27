@@ -20,6 +20,8 @@
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
+
+  <!-- Tambahkan Kod Simulate Login Di Sini -->
   <script>
     // Konfigurasi MiniKit
     const kit = new MiniKit({
@@ -34,7 +36,7 @@
       try {
         alert('Simulated login successful!');
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('username', 'Test User');
+        localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
         window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
         alert('Simulation failed. Please try again.');
@@ -55,7 +57,7 @@
       }
     }
 
-    // Tambahkan Event Listener
+    // Sambungkan Fungsi ke Butang
     document.getElementById('simulateLogin').addEventListener('click', simulateLogin);
     document.getElementById('loginButton').addEventListener('click', worldcoinLogin);
   </script>
