@@ -32,10 +32,16 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Buang pemeriksaan login buat sementara
-    console.log("Bypass login is enabled. You are logged in automatically.");
-    localStorage.setItem('isLoggedIn', 'true'); // Simulasi pengguna log masuk
-    localStorage.setItem('username', 'Bypass User'); // Tetapkan nama pengguna sementara
+    // Simulasi bypass login
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', 'Bypass User');
+
+    // Semak jika pengguna telah log masuk
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
+      alert('You must log in to access this page.');
+      window.location.href = 'login.html';
+    }
 
     // Fungsi logout
     const logoutButton = document.getElementById('logoutButton');
