@@ -14,36 +14,38 @@
   </header>
   <main>
     <div class="login-container">
+      <h2>Login with Worldcoin</h2>
       <button id="loginButton" class="login-button">Login with Worldcoin</button>
     </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
+
   <script>
     // Konfigurasi Worldcoin MiniKit
     const kit = new MiniKit({
       appName: 'mGoatGram',
       actionDescription: 'Login to mGoatGram',
       signal: 'login',
-      enableDevelopmentMode: true, // Aktifkan Development Mode
+      enableDevelopmentMode: true, // Aktifkan Development Mode untuk uji
     });
 
     // Fungsi untuk simulasi login
     async function simulateLogin() {
       try {
-        const result = await kit.signIn(); // Simulasi login
+        const result = await kit.signIn(); // Memulakan proses login
         alert('Simulated login successful!');
-        localStorage.setItem('isLoggedIn', 'true'); // Tetapkan status login
+        localStorage.setItem('isLoggedIn', 'true'); // Menyimpan status login
         localStorage.setItem('username', 'Test User'); // Simpan nama pengguna sementara
-        window.location.href = 'index.html'; // Redirect ke halaman utama
+        window.location.href = 'index.html'; // Redirect ke halaman utama selepas login
       } catch (error) {
         alert('Login failed. Please try again.');
         console.error(error);
       }
     }
 
-    // Tambahkan event listener untuk butang login
+    // Event listener untuk butang login
     const loginButton = document.getElementById('loginButton');
     loginButton.addEventListener('click', simulateLogin);
   </script>
