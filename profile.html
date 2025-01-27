@@ -64,3 +64,15 @@
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<div id="editProfileForm" class="edit-profile-form hidden">
+  <h3>Edit Profile</h3>
+  <form>
+    <input type="text" id="editUsername" placeholder="New username" required>
+    <label for="editProfileImage">Update Profile Picture</label>
+    <input type="file" id="editProfileImage" accept="image/*">
+    <label><input type="checkbox" id="verifiedCheckbox"> Verified</label>
+    <button type="submit">Save Changes</button>
+    <button type="button" id="cancelEdit">Cancel</button>
+  </form>
+</div>
