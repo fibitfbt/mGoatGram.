@@ -13,9 +13,9 @@
   </header>
   <main>
     <div class="login-container">
-      <!-- Button untuk Worldcoin Login -->
+      <!-- Butang Login Worldcoin -->
       <button id="loginButton" class="login-button">Login with Worldcoin</button>
-      <!-- Button untuk Simulate Login -->
+      <!-- Butang Simulasi Login -->
       <button id="simulateLogin" class="login-button simulate-button" style="margin-top: 20px;">Simulate Login</button>
     </div>
   </main>
@@ -29,16 +29,16 @@
       appName: 'mGoatGram',
       actionDescription: 'Login to mGoatGram',
       signal: 'login',
-      enableDevelopmentMode: true, // Aktifkan mod pembangunan
+      enableDevelopmentMode: true,
     });
 
-    // Fungsi Simulate Login
+    // Fungsi Simulasi Login
     async function simulateLogin() {
       try {
-        // Simulasi login berjaya
-        alert('Simulated login successful!');
-        localStorage.setItem('isLoggedIn', 'true'); // Tandakan pengguna telah log masuk
+        // Tetapkan status log masuk
+        localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
+        alert('Simulated login successful!');
         window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
         alert('Simulation failed. Please try again.');
@@ -46,13 +46,13 @@
       }
     }
 
-    // Fungsi Login dengan Worldcoin
+    // Fungsi Login Worldcoin
     async function worldcoinLogin() {
       try {
-        const result = await kit.signIn(); // Log masuk dengan Worldcoin
+        const result = await kit.signIn();
+        localStorage.setItem('isLoggedIn', 'true');
         alert('Worldcoin login successful!');
-        localStorage.setItem('isLoggedIn', 'true'); // Tandakan pengguna telah log masuk
-        window.location.href = 'index.html'; // Redirect ke halaman utama
+        window.location.href = 'index.html';
       } catch (error) {
         alert('Worldcoin login failed. Please try again.');
         console.error(error);
