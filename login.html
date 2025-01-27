@@ -26,10 +26,10 @@
   <script>
     // Konfigurasi MiniKit
     const kit = new MiniKit({
-      appName: 'mGoatGram',
-      actionDescription: 'Login to mGoatGram',
-      signal: 'login',
-      enableDevelopmentMode: true,
+      appName: 'mGoatGram', // Nama aplikasi
+      actionDescription: 'Login to mGoatGram', // Penerangan tindakan
+      signal: 'login', // Signal unik
+      enableDevelopmentMode: true, // Aktifkan mod pembangunan
     });
 
     // Fungsi Simulasi Login
@@ -38,6 +38,8 @@
         // Tetapkan status log masuk
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
+        console.log(localStorage.getItem('isLoggedIn')); // Debugging: Harus 'true'
+        console.log(localStorage.getItem('username')); // Debugging: Harus 'Test User'
         alert('Simulated login successful!');
         window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
@@ -49,33 +51,22 @@
     // Fungsi Login Worldcoin
     async function worldcoinLogin() {
       try {
-        const result = await kit.signIn();
+        const result = await kit.signIn(); // Login menggunakan Worldcoin
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', result.profile.name || 'Worldcoin User'); // Nama pengguna daripada Worldcoin
+        console.log(localStorage.getItem('isLoggedIn')); // Debugging: Harus 'true'
+        console.log(localStorage.getItem('username')); // Debugging: Nama pengguna daripada Worldcoin
         alert('Worldcoin login successful!');
-        window.location.href = 'index.html';
+        window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
         alert('Worldcoin login failed. Please try again.');
         console.error(error);
       }
     }
 
-    // Sambungkan Fungsi ke Butang
+    // Sambungkan fungsi ke butang
     document.getElementById('simulateLogin').addEventListener('click', simulateLogin);
     document.getElementById('loginButton').addEventListener('click', worldcoinLogin);
   </script>
 </body>
 </html>
-
-async function simulateLogin() {
-  try {
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
-    console.log(localStorage.getItem('isLoggedIn')); // Harus 'true'
-    console.log(localStorage.getItem('username')); // Harus 'Test User'
-    alert('Simulated login successful!');
-    window.location.href = 'index.html';
-  } catch (error) {
-    alert('Simulation failed. Please try again.');
-    console.error(error);
-  }
-}
