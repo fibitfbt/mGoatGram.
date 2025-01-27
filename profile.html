@@ -17,14 +17,28 @@
   <!-- Profile Section -->
   <main>
     <div class="profile-container">
-      <img src="user-placeholder.png" alt="Profile Picture" class="profile-picture">
-      <h2>Username</h2>
-      <p><strong>Posts:</strong> 10 | <strong>Followers:</strong> 100</p>
-      <button class="edit-profile-btn">Edit Profile</button>
+      <img id="profilePicture" src="user-placeholder.png" alt="Profile Picture" class="profile-picture">
+      <h2 id="usernameDisplay">
+        <span class="username">Username</span>
+        <span id="verifiedBadge" class="verified-badge" title="Verified">✔</span>
+      </h2>
+      <p><strong>Posts:</strong> <span id="postCount">10</span> | <strong>Followers:</strong> <span id="followerCount">100</span></p>
+      <button id="editProfileBtn" class="edit-profile-btn">Edit Profile</button>
+    </div>
+
+    <div id="editProfileForm" class="edit-profile-form hidden">
+      <h3>Edit Profile</h3>
+      <form>
+        <input type="text" id="editUsername" placeholder="New username" required>
+        <input type="file" id="editProfileImage" accept="image/*">
+        <label><input type="checkbox" id="verifiedCheckbox"> Verified</label>
+        <button type="submit">Save Changes</button>
+        <button type="button" id="cancelEdit">Cancel</button>
+      </form>
     </div>
 
     <div class="posts-container">
-      <!-- User's posts will be rendered dynamically here -->
+      <!-- User's posts will be dynamically rendered here -->
     </div>
   </main>
 
