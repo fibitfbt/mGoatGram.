@@ -58,13 +58,19 @@
           appName: 'mGoatGram',
           actionDescription: 'Verify your account',
           signal: 'verifyBadge',
+          enableDevelopmentMode: true, // Aktifkan mod pembangunan
         });
-        await kit.pay({ amount: 3, currency: 'WLD' });
-        alert('Badge verified successfully!');
-        localStorage.setItem('isVerified', 'true');
-        badgeStatus.textContent = '✅ Verified';
+        const result = await kit.pay({ amount: 3, currency: 'WLD' });
+        if (result.success) {
+          alert('Badge verified successfully!');
+          localStorage.setItem('isVerified', 'true');
+          badgeStatus.textContent = '✅ Verified';
+        } else {
+          alert('Payment failed. Please try again.');
+        }
       } catch (error) {
-        alert('Payment failed. Please try again.');
+        alert('An error occurred during verification. Please try again later.');
+        console.error(error);
       }
     });
 
