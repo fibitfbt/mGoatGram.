@@ -12,7 +12,7 @@
       <a href="index.html">Home</a>
       <a href="createPost.html" class="active">Create Post</a>
       <a href="profile.html">Profile</a>
-      <button id="logoutButton" class="logout">Logout</button>
+      <button id="logoutButton" class="logout-button">Logout</button>
     </nav>
     <h1>🐐 mGoatGram</h1>
   </header>
@@ -23,7 +23,7 @@
         <!-- Input Caption -->
         <input type="text" id="postTitle" placeholder="Caption..." required>
         <!-- Upload Image -->
-        <input type="file" id="postImage" accept="image/*">
+        <input type="file" id="postImage" accept="image/*" required>
         <!-- Image Preview -->
         <img id="previewImage" src="" alt="Image Preview" style="display: none; max-width: 100%; border-radius: 10px; margin: 10px 0;">
         <!-- Submit Button -->
@@ -58,7 +58,7 @@
     // Handle image preview
     postImage.addEventListener('change', () => {
       const file = postImage.files[0];
-      if (file) {
+      if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
         reader.onload = (e) => {
           previewImage.src = e.target.result;
@@ -67,13 +67,18 @@
         reader.readAsDataURL(file);
       } else {
         previewImage.style.display = 'none';
+        alert('Please upload a valid image file.');
       }
     });
 
     // Handle form submission
     postForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const title = document.getElementById('postTitle').value;
+      const title = document.getElementById('postTitle').value.trim();
+      if (!title) {
+        alert('Please enter a caption for the post.');
+        return;
+      }
       const image = previewImage.src;
       const newPost = { title, image };
       posts.push(newPost);
