@@ -1,23 +1,43 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms-MY">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - mGoatGram</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
 </head>
 <body>
   <header>
-    <h1>User Profile</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="createPost.html">Create Post</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <h1>🐐 User Profile</h1>
   </header>
   <main>
-    <h2>🐐 John Doe</h2>
-    <p>Verified Badge: ✅</p>
-    <p>Subscription: 3 WLD/month</p>
-    <button onclick="alert('Payment Page Coming Soon')">Renew Badge</button>
+    <div id="userProfile">
+      <h2>🐐 John Doe</h2>
+      <p>Verified Badge: ✅</p>
+      <p>Subscription: 3 WLD/month</p>
+      <button id="renewBadge">Renew Badge</button>
+    </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
+  <script>
+    const renewBadge = document.getElementById('renewBadge');
+    renewBadge.addEventListener('click', async () => {
+      try {
+        const kit = new MiniKit();
+        await kit.pay({ amount: 3, currency: 'WLD' });
+        alert('Badge renewed successfully!');
+      } catch (error) {
+        alert('Payment failed!');
+      }
+    });
+  </script>
 </body>
 </html>
