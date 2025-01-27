@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - mGoatGram</title>
   <link rel="stylesheet" href="style.css">
-  <!-- Muatkan Worldcoin MiniKit -->
   <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
 </head>
 <body>
@@ -15,32 +14,50 @@
   <main>
     <div class="login-container">
       <button id="loginButton" class="login-button">Login with Worldcoin</button>
+      <button id="simulateLogin" class="login-button simulate-button" style="margin-top: 20px;">Simulate Login</button>
     </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
+    // Kod konfigurasi MiniKit diletakkan di sini
     const kit = new MiniKit({
       appName: 'mGoatGram',
       actionDescription: 'Login to mGoatGram',
       signal: 'login',
-      enableDevelopmentMode: true,
+      enableDevelopmentMode: true, // Aktifkan mod pembangunan
     });
 
+    // Fungsi Simulasi Login
     async function simulateLogin() {
       try {
-        const result = await kit.signIn();
         alert('Simulated login successful!');
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', 'Test User');
         window.location.href = 'index.html';
       } catch (error) {
-        alert('Login failed. Please try again.');
+        alert('Simulation failed. Please try again.');
+        console.error(error);
       }
     }
 
-    document.getElementById('loginButton').addEventListener('click', simulateLogin);
+    // Sambung Fungsi ke Butang Simulasi
+    document.getElementById('simulateLogin').addEventListener('click', simulateLogin);
+
+    // Fungsi Login dengan Worldcoin
+    async function worldcoinLogin() {
+      try {
+        const result = await kit.signIn();
+        alert('Worldcoin login successful!');
+        localStorage.setItem('isLoggedIn', 'true');
+        window.location.href = 'index.html';
+      } catch (error) {
+        alert('Worldcoin login failed. Please try again.');
+        console.error(error);
+      }
+    }
+    document.getElementById('loginButton').addEventListener('click', worldcoinLogin);
   </script>
 </body>
 </html>
