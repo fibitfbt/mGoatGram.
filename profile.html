@@ -13,12 +13,13 @@
       <a href="index.html">Home</a>
       <a href="createPost.html">Create Post</a>
       <a href="profile.html" class="active">Profile</a>
+      <button id="logoutButton" class="logout">Logout</button>
     </nav>
     <h1>🐐 User Profile</h1>
   </header>
   <main>
     <div id="userProfile">
-      <h2>🐐 John Doe</h2>
+      <h2>🐐 <span id="username">John Doe</span></h2>
       <p>Verified Badge: <span id="badgeStatus">❌ Not Verified</span></p>
       <button id="renewBadge">Get Verified (3 WLD)</button>
     </div>
@@ -30,6 +31,19 @@
     // Elemen yang diperlukan
     const badgeStatus = document.getElementById('badgeStatus');
     const renewBadge = document.getElementById('renewBadge');
+    const usernameElement = document.getElementById('username');
+    const logoutButton = document.getElementById('logoutButton');
+
+    // Semak jika pengguna telah log masuk
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
+      alert('You must log in to access this page.');
+      window.location.href = 'login.html';
+    }
+
+    // Semak nama pengguna
+    const username = localStorage.getItem('username') || 'John Doe';
+    usernameElement.textContent = username;
 
     // Semak status Verified Badge
     const isVerified = localStorage.getItem('isVerified') === 'true';
@@ -40,8 +54,11 @@
     // Tangani pembayaran untuk memperbaharui badge
     renewBadge.addEventListener('click', async () => {
       try {
-        // Simulasi pembayaran menggunakan Worldcoin MiniKit
-        const kit = new MiniKit();
+        const kit = new MiniKit({
+          appName: 'mGoatGram',
+          actionDescription: 'Verify your account',
+          signal: 'verifyBadge',
+        });
         await kit.pay({ amount: 3, currency: 'WLD' });
         alert('Badge verified successfully!');
         localStorage.setItem('isVerified', 'true');
@@ -49,6 +66,14 @@
       } catch (error) {
         alert('Payment failed. Please try again.');
       }
+    });
+
+    // Fungsi logout
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('isVerified');
+      alert('You have been logged out.');
+      window.location.href = 'login.html';
     });
   </script>
 </body>
