@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mGoatGram </title>
+  <title>mGoatGram</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,6 +12,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="createPost.html">Create Post</a>
       <a href="profile.html">Profile</a>
+      <button id="logoutButton" class="logout">Logout</button>
     </nav>
     <h1>🐐 mGoatGram Lite</h1>
   </header>
@@ -31,9 +32,26 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
+    // Semak jika pengguna telah log masuk
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (!isLoggedIn) {
+      alert('You must log in to access this page.');
+      window.location.href = 'login.html';
+    }
+
+    // Fungsi logout
+    const logoutButton = document.getElementById('logoutButton');
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('isLoggedIn');
+      alert('You have been logged out.');
+      window.location.href = 'login.html';
+    });
+
+    // Ambil elemen kontena pos
     const postsContainer = document.getElementById('postsContainer');
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
 
+    // Fungsi untuk memaparkan pos
     const renderPosts = () => {
       postsContainer.innerHTML = '';
       if (posts.length === 0) {
