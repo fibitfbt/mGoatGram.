@@ -26,7 +26,7 @@
     <section class="posts">
       <h2>Latest Posts</h2>
       <div id="postsContainer" class="posts-container">
-        <p>No posts yet. <a href="createPost.html" class="create-post-link">Create a new post!</a></p>
+        <p>Loading posts...</p>
       </div>
     </section>
   </main>
@@ -58,10 +58,34 @@
 
     // Ambil elemen kontena pos
     const postsContainer = document.getElementById('postsContainer');
-    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // API Key (Gantikan dengan kunci anda sendiri)
+    const API_KEY = 'api_a2V5X2MxOWE1ZjBkNGZi';
+
+    // Fungsi untuk mendapatkan pos dari API
+    async function fetchPosts() {
+      try {
+        const response = await fetch('https://api.worldcoin.org/posts', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${API_KEY}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch posts: ${response.status}`);
+        }
+
+        const data = await response.json();
+        renderPosts(data.posts); // Panggil fungsi untuk memaparkan pos
+      } catch (error) {
+        console.error(error);
+        postsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
+      }
+    }
 
     // Fungsi untuk memaparkan pos
-    const renderPosts = () => {
+    const renderPosts = (posts) => {
       postsContainer.innerHTML = '';
       if (posts.length === 0) {
         postsContainer.innerHTML = '<p>No posts yet. <a href="createPost.html" class="create-post-link">Create a new post!</a></p>';
@@ -78,7 +102,8 @@
       }
     };
 
-    renderPosts();
+    // Panggil fungsi fetchPosts untuk mendapatkan pos dari API
+    fetchPosts();
   </script>
 </body>
 </html>
