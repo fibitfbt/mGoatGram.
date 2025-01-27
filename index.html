@@ -20,7 +20,7 @@
   <main>
     <section class="intro">
       <h2>🐐 Selamat datang ke mGoatGram!</h2>
-      <p>Ini adalah laman utama aplikasi anda.</p>
+      <p>Ini adalah laman utama aplikasi anda, kini diintegrasikan dengan Worldcoin.</p>
     </section>
 
     <section class="posts">
@@ -66,10 +66,11 @@
     async function fetchPosts() {
       try {
         postsContainer.innerHTML = '<p>Loading posts...</p>';
-        const response = await fetch('https://developer.worldcoin.org', {
+        const response = await fetch('https://developer.worldcoin.org/api/v1/posts', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${API_KEY}`
+            'Authorization': `Bearer ${API_KEY}`,
+            'Content-Type': 'application/json',
           }
         });
 
@@ -78,7 +79,7 @@
         }
 
         const data = await response.json();
-        renderPosts(data.posts); // Panggil fungsi untuk memaparkan pos
+        renderPosts(data.posts || []); // Panggil fungsi untuk memaparkan pos
       } catch (error) {
         console.error('Error fetching posts:', error);
         postsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
