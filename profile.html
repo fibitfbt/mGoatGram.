@@ -1,86 +1,52 @@
 <!DOCTYPE html>
-<html lang="ms-MY">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile - mGoatGram</title>
+  <title>Profile</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="createPost.html">Create Post</a>
-      <a href="profile.html" class="active">Profile</a>
-      <button id="logoutButton" class="logout">Logout</button>
-    </nav>
-    <h1>🐐 User Profile</h1>
+    <h1>Your Profile</h1>
+    <p>Manage your posts and activity.</p>
   </header>
+
+  <!-- Profile Section -->
   <main>
-    <div id="userProfile">
-      <h2>🐐 <span id="username">John Doe</span></h2>
-      <p>Verified Badge: <span id="badgeStatus">❌ Not Verified</span></p>
-      <button id="renewBadge">Get Verified (3 WLD)</button>
+    <div class="profile-container">
+      <img src="user-placeholder.png" alt="Profile Picture" class="profile-picture">
+      <h2>Username</h2>
+      <p><strong>Posts:</strong> 10 | <strong>Followers:</strong> 100</p>
+      <button class="edit-profile-btn">Edit Profile</button>
+    </div>
+
+    <div class="posts-container">
+      <!-- User's posts will be rendered dynamically here -->
     </div>
   </main>
+
+  <!-- Bottom Navigation -->
   <footer>
-    <p>&copy; 2025 mGoatGram</p>
+    <nav class="bottom-nav">
+      <a href="index.html" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Feed</span>
+      </a>
+      <a href="profile.html" class="nav-item active">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="followers.html" class="nav-item">
+        <i class="fas fa-user-friends"></i>
+        <span>Follow</span>
+      </a>
+    </nav>
   </footer>
-  <script>
-    // Elemen yang diperlukan
-    const badgeStatus = document.getElementById('badgeStatus');
-    const renewBadge = document.getElementById('renewBadge');
-    const usernameElement = document.getElementById('username');
-    const logoutButton = document.getElementById('logoutButton');
 
-    // Semak jika pengguna telah log masuk
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    if (!isLoggedIn) {
-      alert('You must log in to access this page.');
-      window.location.href = 'login.html';
-    }
-
-    // Semak nama pengguna
-    const username = localStorage.getItem('username') || 'John Doe';
-    usernameElement.textContent = username;
-
-    // Semak status Verified Badge
-    const isVerified = localStorage.getItem('isVerified') === 'true';
-    if (isVerified) {
-      badgeStatus.textContent = '✅ Verified';
-    }
-
-    // Tangani pembayaran untuk memperbaharui badge
-    renewBadge.addEventListener('click', async () => {
-      try {
-        const kit = new MiniKit({
-          appName: 'mGoatGram',
-          actionDescription: 'Verify your account',
-          signal: 'verifyBadge',
-          enableDevelopmentMode: true, // Aktifkan mod pembangunan
-        });
-        const result = await kit.pay({ amount: 3, currency: 'WLD' });
-        if (result.success) {
-          alert('Badge verified successfully!');
-          localStorage.setItem('isVerified', 'true');
-          badgeStatus.textContent = '✅ Verified';
-        } else {
-          alert('Payment failed. Please try again.');
-        }
-      } catch (error) {
-        alert('An error occurred during verification. Please try again later.');
-        console.error(error);
-      }
-    });
-
-    // Fungsi logout
-    logoutButton.addEventListener('click', () => {
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('isVerified');
-      alert('You have been logged out.');
-      window.location.href = 'login.html';
-    });
-  </script>
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
