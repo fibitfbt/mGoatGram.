@@ -11,6 +11,8 @@ body {
 header {
   margin: 20px 0;
   padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
@@ -20,19 +22,28 @@ h1 {
 }
 
 /* Navigasi */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
 nav a {
   color: #fff;
   text-decoration: none;
-  margin: 0 15px;
   font-weight: bold;
-  transition: color 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 15px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 nav a:hover,
 nav a.active {
-  color: #ffcc00;
+  color: #fff;
+  background: #ffcc00;
 }
 
+/* Logout Button */
 .logout-button {
   font-size: 1em;
   padding: 10px 20px;
@@ -96,11 +107,13 @@ nav a.active {
 
 .post h3 {
   margin: 0 0 10px;
+  font-size: 1.2em;
 }
 
 .post img {
   max-width: 100%;
   border-radius: 10px;
+  margin-top: 10px;
 }
 
 /* Gaya footer */
@@ -122,6 +135,11 @@ footer p {
     font-size: 2em;
   }
 
+  nav a {
+    padding: 5px 15px;
+    font-size: 0.9em;
+  }
+
   .logout-button {
     font-size: 0.9em;
   }
@@ -131,7 +149,25 @@ footer p {
     padding: 15px;
   }
 
+  .posts-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .post {
     max-width: 90%;
   }
+}
+
+/* Gaya pautan "Create Post" */
+.create-post-link {
+  color: #ffcc00;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.create-post-link:hover {
+  color: #ff9900;
 }
