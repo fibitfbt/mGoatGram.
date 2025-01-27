@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-  color: #212529;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -13,36 +13,42 @@ body {
 /* Header */
 header {
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #111; /* Slightly lighter black for contrast */
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 header h1 {
   font-size: 1.8em;
   margin: 0;
+  color: #fff; /* Pure white */
 }
 
 header p {
   font-size: 0.9em;
-  color: #6c757d;
+  color: #ccc; /* Light gray */
   margin: 5px 0 0;
 }
 
 /* Post Card */
+.posts-container {
+  padding: 20px;
+}
+
 .post-card {
-  background: #fff;
+  background: #222; /* Dark gray */
   border-radius: 10px;
   margin: 20px auto;
   max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
   overflow: hidden;
+  color: #fff; /* White text */
 }
 
 .post-header {
   display: flex;
   align-items: center;
   padding: 10px;
-  background: #f1f1f1;
+  background: #333; /* Darker gray */
 }
 
 .user-icon {
@@ -55,7 +61,7 @@ header p {
 .username {
   font-size: 1em;
   font-weight: bold;
-  color: #212529;
+  color: #fff;
 }
 
 .post-image {
@@ -66,15 +72,15 @@ header p {
 
 .post-info {
   padding: 10px;
-  color: #495057;
   font-size: 0.9em;
 }
 
+/* New Post Button */
 .new-post-btn {
   margin: 20px auto;
   padding: 10px 20px;
-  background: #007bff;
-  color: #fff;
+  background: #444; /* Gray button */
+  color: #fff; /* White text */
   border: none;
   border-radius: 25px;
   font-size: 1em;
@@ -83,14 +89,14 @@ header p {
 }
 
 .new-post-btn:hover {
-  background: #0056b3;
+  background: #666; /* Slightly lighter gray */
 }
 
 /* Bottom Navigation */
 footer {
   margin-top: auto;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
+  background-color: #111;
+  border-top: 1px solid #444;
   padding: 10px 0;
 }
 
@@ -102,7 +108,7 @@ footer {
 
 .nav-item {
   text-decoration: none;
-  color: #6c757d;
+  color: #ccc; /* Light gray */
   font-size: 0.9em;
   display: flex;
   flex-direction: column;
@@ -117,7 +123,7 @@ footer {
 
 .nav-item.active,
 .nav-item:hover {
-  color: #007bff;
+  color: #fff; /* Highlighted in white */
 }
 
 /* Responsive Design */
