@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms-MY">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,18 @@
 
   <main>
     <section class="intro">
-      <h2>🐐 Selamat datang ke mGoatGram!</h2>
-      <p>Ini adalah laman utama aplikasi anda, kini diintegrasikan dengan Worldcoin.</p>
+      <h2>🐐 Welcome to mGoatGram!</h2>
+      <p>This is your application's homepage, now integrated with Worldcoin.</p>
     </section>
 
     <section class="posts">
       <h2>Latest Posts</h2>
       <div id="postsContainer" class="posts-container">
-        <p>Loading posts...</p>
+        <!-- Loading animation -->
+        <div id="loading" style="text-align: center; padding: 20px;">
+          <p>Loading posts...</p>
+          <div class="loader"></div>
+        </div>
       </div>
     </section>
   </main>
@@ -36,19 +40,19 @@
   </footer>
 
   <script>
-    // Simulasi bypass login
+    // Simulate login bypass
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('username', 'Bypass User');
     console.log("Bypass login enabled. User logged in as:", localStorage.getItem('username'));
 
-    // Semak jika pengguna telah log masuk
+    // Check if the user is logged in
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     if (!isLoggedIn) {
       alert('You must log in to access this page.');
       window.location.href = 'login.html';
     }
 
-    // Fungsi logout
+    // Logout function
     const logoutButton = document.getElementById('logoutButton');
     logoutButton.addEventListener('click', () => {
       localStorage.removeItem('isLoggedIn');
@@ -56,16 +60,20 @@
       window.location.href = 'login.html';
     });
 
-    // API Key (Gantikan dengan kunci anda sendiri)
+    // API Key (Replace with your actual key)
     const API_KEY = 'api_a2V5X2MxOWE1ZjBkNGZi';
 
-    // Elemen untuk pos
+    // Element for posts
     const postsContainer = document.getElementById('postsContainer');
+    const loading = document.getElementById('loading');
 
-    // Fungsi untuk mendapatkan pos dari API
+    // Function to fetch posts from the API
     async function fetchPosts() {
       try {
-        postsContainer.innerHTML = '<p>Loading posts...</p>';
+        // Show loading animation
+        loading.style.display = 'block';
+        postsContainer.innerHTML = '';
+
         const response = await fetch('https://developer.worldcoin.org/api/v1/posts', {
           method: 'GET',
           headers: {
@@ -79,18 +87,24 @@
         }
 
         const data = await response.json();
-        renderPosts(data.posts || []); // Panggil fungsi untuk memaparkan pos
+        renderPosts(data.posts || []); // Call function to render posts
       } catch (error) {
         console.error('Error fetching posts:', error);
         postsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
+      } finally {
+        // Hide loading animation
+        loading.style.display = 'none';
       }
     }
 
-    // Fungsi untuk memaparkan pos
+    // Function to render posts
     const renderPosts = (posts) => {
       postsContainer.innerHTML = '';
       if (posts.length === 0) {
-        postsContainer.innerHTML = '<p>No posts yet. <a href="createPost.html" class="create-post-link">Create a new post!</a></p>';
+        postsContainer.innerHTML = `
+          <p>No posts yet.</p>
+          <a href="createPost.html" class="create-post-link">Create a new post!</a>
+        `;
       } else {
         posts.forEach((post) => {
           const postDiv = document.createElement('div');
@@ -106,7 +120,7 @@
       }
     };
 
-    // Panggil fungsi fetchPosts untuk mendapatkan pos dari API
+    // Call fetchPosts function to fetch posts from the API
     fetchPosts();
   </script>
 </body>
