@@ -10,21 +10,20 @@
   <header>
     <nav>
       <a href="index.html">Home</a>
-      <a href="createPost.html">Create Post</a>
+      <a href="createPost.html" class="active">Create Post</a>
       <a href="profile.html">Profile</a>
     </nav>
-    <h1>🐐 Create a Post</h1>
+    <h1>🐐 mGoatGram</h1>
   </header>
   <main>
-    <form id="postForm">
-      <label for="postTitle">Post Title:</label>
-      <input type="text" id="postTitle" placeholder="Enter your post title" required>
-
-      <label for="postContent">Post Content:</label>
-      <textarea id="postContent" rows="5" placeholder="Write your post content" required></textarea>
-
-      <button type="submit">Submit Post</button>
-    </form>
+    <div class="form-container">
+      <h2>Create Post</h2>
+      <form id="postForm">
+        <input type="text" id="postTitle" placeholder="Caption..." required>
+        <input type="file" id="postImage" accept="image/*">
+        <button type="submit">Post</button>
+      </form>
+    </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
@@ -33,7 +32,7 @@
     const postForm = document.getElementById('postForm');
     postForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      alert('Your post has been submitted!');
+      alert('Post created successfully!');
       postForm.reset();
     });
   </script>
