@@ -13,7 +13,9 @@
   </header>
   <main>
     <div class="login-container">
+      <!-- Button untuk Worldcoin Login -->
       <button id="loginButton" class="login-button">Login with Worldcoin</button>
+      <!-- Button untuk Simulate Login -->
       <button id="simulateLogin" class="login-button simulate-button" style="margin-top: 20px;">Simulate Login</button>
     </div>
   </main>
@@ -21,7 +23,6 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
 
-  <!-- Tambahkan Kod Simulate Login Di Sini -->
   <script>
     // Konfigurasi MiniKit
     const kit = new MiniKit({
@@ -31,11 +32,12 @@
       enableDevelopmentMode: true, // Aktifkan mod pembangunan
     });
 
-    // Fungsi Simulasi Login
+    // Fungsi Simulate Login
     async function simulateLogin() {
       try {
+        // Simulasi login berjaya
         alert('Simulated login successful!');
-        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('isLoggedIn', 'true'); // Tandakan pengguna telah log masuk
         localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
         window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
@@ -47,10 +49,10 @@
     // Fungsi Login dengan Worldcoin
     async function worldcoinLogin() {
       try {
-        const result = await kit.signIn();
+        const result = await kit.signIn(); // Log masuk dengan Worldcoin
         alert('Worldcoin login successful!');
-        localStorage.setItem('isLoggedIn', 'true');
-        window.location.href = 'index.html';
+        localStorage.setItem('isLoggedIn', 'true'); // Tandakan pengguna telah log masuk
+        window.location.href = 'index.html'; // Redirect ke halaman utama
       } catch (error) {
         alert('Worldcoin login failed. Please try again.');
         console.error(error);
