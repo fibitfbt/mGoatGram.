@@ -12,7 +12,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="createPost.html">Create Post</a>
       <a href="profile.html">Profile</a>
-      <button id="logoutButton" class="logout">Logout</button>
+      <button id="logoutButton" class="logout-button">Logout</button>
     </nav>
     <h1>🐐 mGoatGram Lite</h1>
   </header>
@@ -23,7 +23,7 @@
     </section>
     <section class="posts">
       <h2>Latest Posts</h2>
-      <div id="postsContainer">
+      <div id="postsContainer" class="posts-container">
         <p>No posts yet. Create a new post!</p>
       </div>
     </section>
@@ -62,7 +62,7 @@
           postDiv.classList.add('post');
           postDiv.innerHTML = `
             <h3>${post.title}</h3>
-            ${post.image ? `<img src="${post.image}" alt="Post Image" style="max-width: 100%; border-radius: 10px;">` : ''}
+            ${post.image ? `<img src="${post.image}" alt="Post Image" class="post-image">` : ''}
           `;
           postsContainer.appendChild(postDiv);
         });
