@@ -54,10 +54,8 @@
         const result = await kit.signIn(); // Login menggunakan Worldcoin
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('username', result.profile.name || 'Worldcoin User'); // Nama pengguna daripada Worldcoin
-        console.log(localStorage.getItem('isLoggedIn')); // Debugging: Harus 'true'
-        console.log(localStorage.getItem('username')); // Debugging: Nama pengguna daripada Worldcoin
         alert('Worldcoin login successful!');
-        window.location.href = 'index.html'; // Redirect ke halaman utama
+        window.location.href = 'index.html';
       } catch (error) {
         alert('Worldcoin login failed. Please try again.');
         console.error(error);
