@@ -15,9 +15,6 @@ if (logoutButton) {
   });
 }
 
-// Reference to posts container
-const postsContainer = document.querySelector('.posts-container');
-
 // Simulated posts data (mock data)
 const mockPosts = [
   {
@@ -36,10 +33,13 @@ const mockPosts = [
   },
 ];
 
-// Function to fetch posts (using mock data for now)
+// Function to fetch posts (mock data for now)
 async function fetchPosts() {
+  const postsContainer = document.querySelector('.posts-container');
+
   try {
-    // Uncomment this section if using an actual API
+    postsContainer.innerHTML = '<p>Loading posts...</p>';
+    // Uncomment below when using a real API
     // const response = await fetch('https://api.yourendpoint.com/posts', {
     //   method: 'GET',
     //   headers: {
@@ -49,7 +49,6 @@ async function fetchPosts() {
     // });
     // if (!response.ok) throw new Error(`Failed to fetch posts: ${response.status}`);
     // const data = await response.json();
-
     renderPosts(mockPosts); // Use mock data
   } catch (error) {
     console.error('Error fetching posts:', error);
@@ -59,15 +58,33 @@ async function fetchPosts() {
 
 // Function to render posts dynamically
 function renderPosts(posts) {
+  const postsContainer = document.querySelector('.posts-container');
   postsContainer.innerHTML = ''; // Clear previous content
 
   if (posts.length === 0) {
     postsContainer.innerHTML = '<p>No posts available. Create a new post!</p>';
     return;
   }
+
+  posts.forEach((post) => {
+    const postCard = document.createElement('div');
+    postCard.classList.add('post-card');
+    postCard.innerHTML = `
+      <div class="post-header">
+        <strong>${post.username}</strong>
+      </div>
+      <img src="${post.image}" alt="Post Image" class="post-image">
+      <div class="post-footer">
+        <p>${post.likes} Likes - ${post.comments} Comments</p>
+      </div>
+    `;
+    postsContainer.appendChild(postCard);
+  });
+}
+
 // Profile Information (Simulated Data)
 let username = 'Username';
-let profilePicture = 'user-placeholder.png';
+let profilePicture = 'user-placeholder.png'; // Default profile picture
 let isVerified = true;
 let postCount = 10;
 let followerCount = 100;
@@ -127,23 +144,8 @@ cancelEditBtn.addEventListener('click', () => {
   editProfileForm.classList.add('hidden');
 });
 
-// Load profile on page load
-loadProfile();
-  posts.forEach((post) => {
-    const postCard = document.createElement('div');
-    postCard.classList.add('post-card');
-    postCard.innerHTML = `
-      <div class="post-header">
-        <strong>${post.username}</strong>
-      </div>
-      <img src="${post.image}" alt="Post Image" class="post-image">
-      <div class="post-footer">
-        <p>${post.likes} Likes - ${post.comments} Comments</p>
-      </div>
-    `;
-    postsContainer.appendChild(postCard);
-  });
-}
-
 // Call fetchPosts to load posts on page load
 fetchPosts();
+
+// Load profile on page load
+loadProfile();
