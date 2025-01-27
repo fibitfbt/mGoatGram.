@@ -24,7 +24,7 @@
     <section class="posts">
       <h2>Latest Posts</h2>
       <div id="postsContainer" class="posts-container">
-        <p>No posts yet. Create a new post!</p>
+        <p>No posts yet. <a href="createPost.html" class="create-post-link">Create a new post!</a></p>
       </div>
     </section>
   </main>
@@ -55,7 +55,7 @@
     const renderPosts = () => {
       postsContainer.innerHTML = '';
       if (posts.length === 0) {
-        postsContainer.innerHTML = '<p>No posts yet. Create a new post!</p>';
+        postsContainer.innerHTML = '<p>No posts yet. <a href="createPost.html" class="create-post-link">Create a new post!</a></p>';
       } else {
         posts.forEach((post) => {
           const postDiv = document.createElement('div');
