@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - mGoatGram</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Muatkan Worldcoin MiniKit -->
   <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
 </head>
 <body>
@@ -12,42 +13,38 @@
     <h1>🐐 mGoatGram - Login</h1>
   </header>
   <main>
-    <div class="form-container">
-      <h2>Login with Worldcoin</h2>
-      <button id="loginButton">Verify with Worldcoin</button>
-      <p>Don't have Worldcoin? <a href="https://worldcoin.org/" target="_blank">Get it here</a></p>
+    <div class="login-container">
+      <button id="loginButton">Login with Worldcoin</button>
     </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Elemen butang login
-    const loginButton = document.getElementById('loginButton');
-
-    // Apabila pengguna klik butang login
-    loginButton.addEventListener('click', async () => {
-      try {
-        const kit = new MiniKit({
-          appName: 'mGoatGram',
-          actionDescription: 'Verify your identity to log in',
-          signal: 'login',
-        });
-
-        // Lakukan pengesahan dengan World ID
-        const result = await kit.init();
-        if (result.success) {
-          alert('Login successful!');
-          localStorage.setItem('isLoggedIn', 'true');
-          window.location.href = 'index.html';
-        } else {
-          alert('Verification failed. Please try again.');
-        }
-      } catch (error) {
-        console.error('Login failed:', error);
-        alert('An error occurred. Please try again.');
-      }
+    // Konfigurasi Worldcoin MiniKit
+    const kit = new MiniKit({
+      appName: 'mGoatGram',
+      actionDescription: 'Login to mGoatGram',
+      signal: 'login',
+      enableDevelopmentMode: true, // Aktifkan Development Mode
     });
+
+    // Fungsi untuk simulasi login
+    async function simulateLogin() {
+      try {
+        const result = await kit.signIn(); // Simulasi login
+        alert('Simulated login successful!');
+        localStorage.setItem('isLoggedIn', 'true'); // Tetapkan status login
+        localStorage.setItem('username', 'Test User'); // Simpan nama pengguna sementara
+        window.location.href = 'index.html'; // Redirect ke halaman utama
+      } catch (error) {
+        alert('Login failed. Please try again.');
+        console.error(error);
+      }
+    }
+
+    // Butang login untuk memulakan proses simulasi login
+    document.getElementById('loginButton').addEventListener('click', simulateLogin);
   </script>
 </body>
 </html>
