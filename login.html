@@ -21,6 +21,7 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
+    // Worldcoin MiniKit Configuration
     try {
       console.log('Initializing Worldcoin MiniKit...');
       const kit = new MiniKit({
@@ -30,11 +31,11 @@
         enableDevelopmentMode: true, // Aktifkan Development Mode
       });
 
-      // Fungsi untuk login
+      // Simulate login
       async function simulateLogin() {
         try {
           console.log('Attempting login...');
-          const result = await kit.signIn();
+          const result = await kit.signIn(); // Simulasi login
           console.log('Login successful:', result);
           alert('Simulated login successful!');
           localStorage.setItem('isLoggedIn', 'true'); // Tetapkan status login
@@ -46,7 +47,7 @@
         }
       }
 
-      // Event listener untuk login button
+      // Add login button listener
       const loginButton = document.getElementById('loginButton');
       loginButton.addEventListener('click', simulateLogin);
     } catch (globalError) {
