@@ -65,3 +65,17 @@
   </script>
 </body>
 </html>
+
+async function simulateLogin() {
+  try {
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', 'Test User'); // Nama pengguna sementara
+    console.log(localStorage.getItem('isLoggedIn')); // Harus 'true'
+    console.log(localStorage.getItem('username')); // Harus 'Test User'
+    alert('Simulated login successful!');
+    window.location.href = 'index.html';
+  } catch (error) {
+    alert('Simulation failed. Please try again.');
+    console.error(error);
+  }
+}
