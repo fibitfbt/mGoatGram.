@@ -14,26 +14,33 @@
       <a href="profile.html">Profile</a>
       <button id="logoutButton" class="logout-button">Logout</button>
     </nav>
-    <h1>🐐 mGoatGram</h1>
+    <h1>🐐 Create New Post</h1>
   </header>
   <main>
     <div class="form-container">
       <h2>Create Post</h2>
       <form id="postForm">
         <!-- Input Caption -->
-        <input type="text" id="postTitle" placeholder="Caption..." required>
+        <label for="postTitle">Caption:</label>
+        <input type="text" id="postTitle" placeholder="Enter caption..." required>
+        
         <!-- Upload Image -->
+        <label for="postImage">Upload Image:</label>
         <input type="file" id="postImage" accept="image/*">
+        
         <!-- Image Preview -->
         <img id="previewImage" src="" alt="Image Preview" style="display: none; max-width: 100%; border-radius: 10px; margin: 10px 0;">
+        
         <!-- Submit Button -->
         <button type="submit">Post</button>
       </form>
+      <div id="errorMessage" style="color: red; display: none;"></div>
     </div>
   </main>
   <footer>
-    <p>&copy; 2025 mGoatGram</p>
+    <p>&copy; 2025 mGoatGram | All rights reserved</p>
   </footer>
+
   <script>
     // Semak jika pengguna telah log masuk
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
@@ -53,9 +60,11 @@
     const postForm = document.getElementById('postForm');
     const postImage = document.getElementById('postImage');
     const previewImage = document.getElementById('previewImage');
+    const errorMessage = document.getElementById('errorMessage');
 
     // API Key
-    const API_KEY = 'api_a2V5X2MxOWE1ZjBkNGZi'; // Masukkan API Key anda di sini
+    const API_KEY = 'api_a2V5X2MxOWE1ZjBkNGZi'; // Gantikan dengan API Key anda
+    const API_ENDPOINT = 'https://developer.worldcoin.org/api/v1/posts'; // Pastikan endpoint API betul
 
     // Handle image preview
     postImage.addEventListener('change', () => {
@@ -93,8 +102,11 @@
       }
 
       try {
+        errorMessage.style.display = 'none';
+        errorMessage.textContent = '';
+
         // Hantar permintaan ke API
-        const response = await fetch('https://developer.worldcoin.org', {
+        const response = await fetch(API_ENDPOINT, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${API_KEY}`,
@@ -108,10 +120,13 @@
 
         const data = await response.json();
         alert('Post created successfully!');
+        postForm.reset();
+        previewImage.style.display = 'none';
         window.location.href = 'index.html'; // Kembali ke halaman utama
       } catch (error) {
         console.error('Error creating post:', error);
-        alert('Failed to create post. Please try again.');
+        errorMessage.style.display = 'block';
+        errorMessage.textContent = 'Failed to create post. Please try again later.';
       }
     });
   </script>
