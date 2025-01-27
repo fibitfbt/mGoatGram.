@@ -32,16 +32,10 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Debugging untuk log status log masuk
-    console.log('Checking login status...');
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    console.log('Is Logged In:', isLoggedIn); // Debugging
-
-    // Semak jika pengguna tidak log masuk
-    if (!isLoggedIn) {
-      alert('You must log in to access this page.');
-      window.location.href = 'login.html';
-    }
+    // Buang pemeriksaan login buat sementara
+    console.log("Bypass login is enabled. You are logged in automatically.");
+    localStorage.setItem('isLoggedIn', 'true'); // Simulasi pengguna log masuk
+    localStorage.setItem('username', 'Bypass User'); // Tetapkan nama pengguna sementara
 
     // Fungsi logout
     const logoutButton = document.getElementById('logoutButton');
@@ -73,7 +67,6 @@
       }
     };
 
-    // Paparkan pos yang disimpan
     renderPosts();
   </script>
 </body>
