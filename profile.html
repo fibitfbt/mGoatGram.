@@ -12,30 +12,42 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="createPost.html">Create Post</a>
-      <a href="profile.html">Profile</a>
+      <a href="profile.html" class="active">Profile</a>
     </nav>
     <h1>🐐 User Profile</h1>
   </header>
   <main>
     <div id="userProfile">
       <h2>🐐 John Doe</h2>
-      <p>Verified Badge: ✅</p>
-      <p>Subscription: 3 WLD/month</p>
-      <button id="renewBadge">Renew Badge</button>
+      <p>Verified Badge: <span id="badgeStatus">❌ Not Verified</span></p>
+      <button id="renewBadge">Get Verified (3 WLD)</button>
     </div>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
+    // Elemen yang diperlukan
+    const badgeStatus = document.getElementById('badgeStatus');
     const renewBadge = document.getElementById('renewBadge');
+
+    // Semak status Verified Badge
+    const isVerified = localStorage.getItem('isVerified') === 'true';
+    if (isVerified) {
+      badgeStatus.textContent = '✅ Verified';
+    }
+
+    // Tangani pembayaran untuk memperbaharui badge
     renewBadge.addEventListener('click', async () => {
       try {
+        // Simulasi pembayaran menggunakan Worldcoin MiniKit
         const kit = new MiniKit();
         await kit.pay({ amount: 3, currency: 'WLD' });
-        alert('Badge renewed successfully!');
+        alert('Badge verified successfully!');
+        localStorage.setItem('isVerified', 'true');
+        badgeStatus.textContent = '✅ Verified';
       } catch (error) {
-        alert('Payment failed!');
+        alert('Payment failed. Please try again.');
       }
     });
   </script>
