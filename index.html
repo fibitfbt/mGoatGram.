@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mGoatGram Lite</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@worldcoin/minikit-js@0.0.38-internal-alpha/+esm"></script>
 </head>
 <body>
   <header>
@@ -17,26 +16,26 @@
     <h1>🐐 mGoatGram Lite</h1>
   </header>
   <main>
-    <h1>🐐 Selamat datang ke mGoatGram!</h1>
-    <p>Ini adalah laman utama aplikasi anda.</p>
-    <h2>Latest Posts</h2>
-    <!-- Container untuk memaparkan pos -->
-    <div id="postsContainer">
-      <p>No posts yet. Create a new post!</p>
-    </div>
+    <section class="intro">
+      <h2>🐐 Selamat datang ke mGoatGram!</h2>
+      <p>Ini adalah laman utama aplikasi anda.</p>
+    </section>
+    <section class="posts">
+      <h2>Latest Posts</h2>
+      <div id="postsContainer">
+        <p>No posts yet. Create a new post!</p>
+      </div>
+    </section>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Dapatkan elemen kontena pos
     const postsContainer = document.getElementById('postsContainer');
-    // Ambil pos dari Local Storage
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
 
-    // Fungsi untuk memaparkan pos
     const renderPosts = () => {
-      postsContainer.innerHTML = ''; // Kosongkan kontena terlebih dahulu
+      postsContainer.innerHTML = '';
       if (posts.length === 0) {
         postsContainer.innerHTML = '<p>No posts yet. Create a new post!</p>';
       } else {
@@ -52,7 +51,6 @@
       }
     };
 
-    // Paparkan pos
     renderPosts();
   </script>
 </body>
