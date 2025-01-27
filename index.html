@@ -32,8 +32,12 @@
     <p>&copy; 2025 mGoatGram</p>
   </footer>
   <script>
-    // Semak jika pengguna telah log masuk
+    // Debugging untuk log status log masuk
+    console.log('Checking login status...');
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    console.log('Is Logged In:', isLoggedIn); // Debugging
+
+    // Semak jika pengguna tidak log masuk
     if (!isLoggedIn) {
       alert('You must log in to access this page.');
       window.location.href = 'login.html';
@@ -69,6 +73,7 @@
       }
     };
 
+    // Paparkan pos yang disimpan
     renderPosts();
   </script>
 </body>
