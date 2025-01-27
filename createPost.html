@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ms">
+<html lang="ms-MY">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,19 +8,34 @@
 </head>
 <body>
   <header>
-    <h1>Create a Post</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="createPost.html">Create Post</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <h1>🐐 Create a Post</h1>
   </header>
   <main>
-    <form>
-      <label for="postTitle">Title</label>
-      <input type="text" id="postTitle" placeholder="Enter your title" required>
-      <label for="postContent">Content</label>
-      <textarea id="postContent" rows="5" placeholder="Enter your content" required></textarea>
-      <button type="submit">Submit</button>
+    <form id="postForm">
+      <label for="postTitle">Post Title:</label>
+      <input type="text" id="postTitle" placeholder="Enter your post title" required>
+
+      <label for="postContent">Post Content:</label>
+      <textarea id="postContent" rows="5" placeholder="Write your post content" required></textarea>
+
+      <button type="submit">Submit Post</button>
     </form>
   </main>
   <footer>
     <p>&copy; 2025 mGoatGram</p>
   </footer>
+  <script>
+    const postForm = document.getElementById('postForm');
+    postForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Your post has been submitted!');
+      postForm.reset();
+    });
+  </script>
 </body>
 </html>
