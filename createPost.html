@@ -19,8 +19,13 @@
     <div class="form-container">
       <h2>Create Post</h2>
       <form id="postForm">
+        <!-- Input Caption -->
         <input type="text" id="postTitle" placeholder="Caption..." required>
+        <!-- Upload Image -->
         <input type="file" id="postImage" accept="image/*">
+        <!-- Image Preview -->
+        <img id="previewImage" src="" alt="Image Preview" style="display: none; max-width: 100%; border-radius: 10px; margin: 10px 0;">
+        <!-- Submit Button -->
         <button type="submit">Post</button>
       </form>
     </div>
@@ -30,17 +35,37 @@
   </footer>
   <script>
     const postForm = document.getElementById('postForm');
+    const postImage = document.getElementById('postImage');
+    const previewImage = document.getElementById('previewImage');
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // Handle image preview
+    postImage.addEventListener('change', () => {
+      const file = postImage.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.style.display = 'none';
+      }
+    });
+
+    // Handle form submission
     postForm.addEventListener('submit', (e) => {
       e.preventDefault();
+      const title = document.getElementById('postTitle').value;
+      const image = previewImage.src;
+      const newPost = { title, image };
+      posts.push(newPost);
+      localStorage.setItem('posts', JSON.stringify(posts));
       alert('Post created successfully!');
       postForm.reset();
+      previewImage.style.display = 'none';
     });
   </script>
 </body>
 </html>
-<form id="postForm">
-  <input type="text" id="postTitle" placeholder="Caption..." required>
-  <input type="file" id="postImage" accept="image/*">
-  <img id="previewImage" src="" alt="Image Preview" style="display: none; max-width: 100%; border-radius: 10px; margin: 10px 0;">
-  <button type="submit">Post</button>
-</form>
