@@ -14,7 +14,7 @@
   </header>
   <main>
     <div class="login-container">
-      <button id="loginButton">Login with Worldcoin</button>
+      <button id="loginButton" class="login-button">Login with Worldcoin</button>
     </div>
   </main>
   <footer>
@@ -43,8 +43,9 @@
       }
     }
 
-    // Butang login untuk memulakan proses simulasi login
-    document.getElementById('loginButton').addEventListener('click', simulateLogin);
+    // Tambahkan event listener untuk butang login
+    const loginButton = document.getElementById('loginButton');
+    loginButton.addEventListener('click', simulateLogin);
   </script>
 </body>
 </html>
