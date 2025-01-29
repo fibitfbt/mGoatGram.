@@ -1,103 +1,61 @@
-/* Gaya Global */
 body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     text-align: center;
+    background-color: #181818;
+    color: white;
     margin: 0;
     padding: 0;
-    background-color: #1e1e1e; /* Tema gelap */
-    color: #f8f9fa;
 }
 
-/* Tajuk & Header */
 header {
     background-color: #222;
-    color: #4CAF50; /* Hijau */
-    padding: 15px;
-    font-size: 24px;
-    font-weight: bold;
+    padding: 10px;
+}
+
+.button-container {
     display: flex;
     justify-content: center;
-    align-items: center;
     gap: 10px;
-}
-
-header img {
-    width: 40px;
-    height: 40px;
-}
-
-/* Input Post */
-textarea, input[type="file"] {
-    width: 90%;
-    max-width: 500px;
-    margin: 10px auto;
-    display: block;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background: #2a2a2a;
-    color: white;
-    font-size: 16px;
-}
-
-/* Butang */
-button {
-    background-color: #008CBA; /* Biru */
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 8px;
     margin: 10px;
-    transition: 0.3s ease;
 }
 
-button:hover {
-    background-color: #005f73;
-    transform: scale(1.05);
+.btn {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Container Post */
-#postsContainer {
-    margin-top: 20px;
-    width: 90%;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.btn:hover {
+    background-color: #e68900;
 }
 
-/* Kad Post */
-.post {
+.modal {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background: #333;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 15px;
+}
+
+.modal-content {
     text-align: left;
 }
 
-.post p {
-    color: #f8f9fa;
+.close {
+    float: right;
+    cursor: pointer;
+    color: white;
 }
 
-/* Gambar Post */
-img {
-    max-width: 100%;
-    border-radius: 10px;
-    margin-top: 10px;
-}
-
-/* Footer */
-footer {
-    margin-top: 20px;
-}
-
-#homeBtn, #profileBtn {
-    background: #4CAF50;
-    padding: 12px 20px;
-}
-
-#homeBtn:hover, #profileBtn:hover {
-    background: #388E3C;
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
 }
