@@ -3,39 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>mGoatGram</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>🐐 mGoatGram</h1>
-        <p>Home - Connecting Communities, One Post at a Time</p>
+        <p>Create a New Post</p>
     </header>
+    
     <main>
-        <div class="button-container">
-    <button onclick="loginWorldcoin()" class="btn">Sign In with Worldcoin</button>
-    <button onclick="openPostModal()" class="btn">+ New Post</button>
-</div>
-<div id="post-modal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closePostModal()">&times;</span>
-        <h2>Create a New Post</h2>
-        <input type="text" id="post-content" placeholder="Enter your post content">
-        <input type="file" id="image-upload" accept="image/*">
-        <button onclick="submitPost()" class="btn">Post</button>
-    </div>
-</div>
-<div id="posts-container"></div>
+        <textarea id="postContent" placeholder="Enter your post content..."></textarea>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button id="submitPost">Post</button>
+
+        <h2>Your Posts</h2>
+        <div id="postsContainer"></div>
     </main>
+
     <footer>
-        <div class="nav-buttons">
-            <button onclick="navigate('index.html')" class="btn">Home</button>
-            <button onclick="navigate('feed.html')" class="btn">Feed</button>
-            <button onclick="navigate('profile.html')" class="btn">Profile</button>
-            <button onclick="navigate('follow.html')" class="btn">Follow</button>
-        </div>
-        <p>© 2025 mGoatGram | All rights reserved</p>
+        <button id="homeBtn">Home</button>
+        <button id="profileBtn">Profile</button>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
