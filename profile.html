@@ -15,13 +15,14 @@
         <h2>Your Profile</h2>
 <p>Manage your profile and activity.</p>
 <input type="text" id="username" placeholder="Enter new username">
-<button id="save-profile-btn" class="btn">Save Profile</button>
+<button onclick="saveProfile()" class="btn">Save Profile</button>
     </main>
     <footer>
         <div class="nav-buttons">
-            <button id="feed-btn" class="btn">Feed</button>
-            <button id="profile-btn" class="btn">Profile</button>
-            <button id="follow-btn" class="btn">Follow</button>
+            <button onclick="navigate('index.html')" class="btn">Home</button>
+            <button onclick="navigate('feed.html')" class="btn">Feed</button>
+            <button onclick="navigate('profile.html')" class="btn">Profile</button>
+            <button onclick="navigate('follow.html')" class="btn">Follow</button>
         </div>
         <p>© 2025 mGoatGram | All rights reserved</p>
     </footer>

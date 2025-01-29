@@ -1,14 +1,18 @@
 console.log('Script Loaded');
 
-document.getElementById("new-post-btn")?.addEventListener("click", function() {
+function navigate(page) {
+    window.location.href = page;
+}
+
+function openPostModal() {
     document.getElementById("post-modal").style.display = "block";
-});
+}
 
-document.querySelector(".close")?.addEventListener("click", function() {
+function closePostModal() {
     document.getElementById("post-modal").style.display = "none";
-});
+}
 
-document.getElementById("submit-post-btn")?.addEventListener("click", function() {
+function submitPost() {
     let postContent = document.getElementById("post-content").value.trim();
     let imageUpload = document.getElementById("image-upload").files[0];
 
@@ -30,20 +34,31 @@ document.getElementById("submit-post-btn")?.addEventListener("click", function()
         }
 
         postsContainer.appendChild(newPost);
-        document.getElementById("post-modal").style.display = "none";
+        closePostModal();
     } else {
         alert("Please enter text or select an image to post.");
     }
-});
+}
 
-document.getElementById("feed-btn").addEventListener("click", function() {
-    window.location.href = "feed.html";
-});
+function saveProfile() {
+    let username = document.getElementById("username").value.trim();
+    if (username) {
+        localStorage.setItem("username", username);
+        alert("Profile updated successfully!");
+    } else {
+        alert("Please enter a valid username.");
+    }
+}
 
-document.getElementById("profile-btn").addEventListener("click", function() {
-    window.location.href = "profile.html";
-});
-
-document.getElementById("follow-btn").addEventListener("click", function() {
-    window.location.href = "follow.html";
-});
+function followUser() {
+    let userToFollow = document.getElementById("userToFollow").value.trim();
+    if (userToFollow) {
+        let followingList = document.getElementById("followingList");
+        let listItem = document.createElement("li");
+        listItem.innerText = userToFollow;
+        followingList.appendChild(listItem);
+        alert("You are now following " + userToFollow);
+    } else {
+        alert("Please enter a username to follow.");
+    }
+}

@@ -13,25 +13,26 @@
     </header>
     <main>
         <div class="button-container">
-    <button id="login-btn" class="btn">Sign In with Worldcoin</button>
-    <button id="new-post-btn" class="btn">+ New Post</button>
+    <button onclick="loginWorldcoin()" class="btn">Sign In with Worldcoin</button>
+    <button onclick="openPostModal()" class="btn">+ New Post</button>
 </div>
 <div id="post-modal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" onclick="closePostModal()">&times;</span>
         <h2>Create a New Post</h2>
         <input type="text" id="post-content" placeholder="Enter your post content">
         <input type="file" id="image-upload" accept="image/*">
-        <button id="submit-post-btn" class="btn">Post</button>
+        <button onclick="submitPost()" class="btn">Post</button>
     </div>
 </div>
 <div id="posts-container"></div>
     </main>
     <footer>
         <div class="nav-buttons">
-            <button id="feed-btn" class="btn">Feed</button>
-            <button id="profile-btn" class="btn">Profile</button>
-            <button id="follow-btn" class="btn">Follow</button>
+            <button onclick="navigate('index.html')" class="btn">Home</button>
+            <button onclick="navigate('feed.html')" class="btn">Feed</button>
+            <button onclick="navigate('profile.html')" class="btn">Profile</button>
+            <button onclick="navigate('follow.html')" class="btn">Follow</button>
         </div>
         <p>© 2025 mGoatGram | All rights reserved</p>
     </footer>
