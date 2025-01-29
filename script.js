@@ -35,3 +35,15 @@ document.getElementById("submit-post-btn").addEventListener("click", function() 
         alert("Please enter text or select an image to post.");
     }
 });
+
+document.getElementById("feed-btn").addEventListener("click", function() {
+    window.location.href = "feed.html";
+});
+
+document.getElementById("profile-btn").addEventListener("click", function() {
+    window.location.href = "profile.html";
+});
+
+document.getElementById("follow-btn").addEventListener("click", function() {
+    window.location.href = "follow.html";
+});

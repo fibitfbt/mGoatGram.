@@ -12,25 +12,29 @@
         <p>Connecting Communities, One Post at a Time</p>
     </header>
     <main>
-        <button id="login-btn">Sign In with Worldcoin</button>
-        <button id="new-post-btn">+ New Post</button>
-        
+        <div class="button-container">
+            <button id="login-btn" class="btn">Sign In with Worldcoin</button>
+            <button id="new-post-btn" class="btn">+ New Post</button>
+        </div>
+
         <div id="post-modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Create a New Post</h2>
                 <input type="text" id="post-content" placeholder="Enter your post content">
                 <input type="file" id="image-upload" accept="image/*">
-                <button id="submit-post-btn">Post</button>
+                <button id="submit-post-btn" class="btn">Post</button>
             </div>
         </div>
 
         <div id="posts-container"></div>
     </main>
     <footer>
-        <button id="feed-btn">Feed</button>
-        <button id="profile-btn">Profile</button>
-        <button id="follow-btn">Follow</button>
+        <div class="nav-buttons">
+            <button id="feed-btn" class="btn">Feed</button>
+            <button id="profile-btn" class="btn">Profile</button>
+            <button id="follow-btn" class="btn">Follow</button>
+        </div>
         <p>© 2025 mGoatGram | All rights reserved</p>
     </footer>
     <script src="script.js"></script>
