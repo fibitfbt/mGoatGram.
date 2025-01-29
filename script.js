@@ -39,4 +39,13 @@ document.addEventListener("DOMContentLoaded", function() {
             imageUpload.value = "";
         });
     }
+
+    // Handle navigation buttons
+    document.getElementById("homeBtn").addEventListener("click", function() {
+        window.location.href = "index.html";
+    });
+
+    document.getElementById("profileBtn").addEventListener("click", function() {
+        window.location.href = "profile.html";
+    });
 });
