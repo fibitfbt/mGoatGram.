@@ -1,72 +1,42 @@
 document.addEventListener("DOMContentLoaded", function() {
-    console.log('Script loaded and event listeners attached.');
+    const submitPostButton = document.getElementById("submitPost");
+    const postContent = document.getElementById("postContent");
+    const imageUpload = document.getElementById("imageUpload");
+    const postsContainer = document.getElementById("postsContainer");
 
-    // Ensure buttons are clickable
-    document.getElementById("upload-profile-pic").addEventListener("change", updateProfilePicture);
-    document.getElementById("save-profile").addEventListener("click", saveProfile);
-    document.getElementById("buy-blue-badge").addEventListener("click", function() {
-        purchaseBadge('blue');
-    });
-    document.getElementById("buy-gold-badge").addEventListener("click", function() {
-        purchaseBadge('gold');
-    });
+    if (submitPostButton) {
+        submitPostButton.addEventListener("click", function() {
+            const content = postContent.value.trim();
+            const imageFile = imageUpload.files[0];
 
-    function updateProfilePicture() {
-        let file = document.getElementById("upload-profile-pic").files[0];
-        if (file) {
-            let reader = new FileReader();
-            reader.onload = function (e) {
-                document.getElementById("profile-picture").src = e.target.result;
-                localStorage.setItem("profilePicture", e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
+            if (!content && !imageFile) {
+                alert("Please enter text or upload an image to post.");
+                return;
+            }
 
-    function saveProfile() {
-        let username = document.getElementById("username").value.trim();
-        if (username) {
-            localStorage.setItem("username", username);
-            alert("Profile updated successfully!");
-        } else {
-            alert("Please enter a valid username.");
-        }
-    }
+            const postElement = document.createElement("div");
+            postElement.className = "post";
 
-    function purchaseBadge(type) {
-        let badgeContainer = document.getElementById("badge-display");
-        let badge = document.createElement("span");
-        badge.classList.add("badge");
+            if (content) {
+                const textElement = document.createElement("p");
+                textElement.textContent = content;
+                postElement.appendChild(textElement);
+            }
 
-        if (type === "blue") {
-            badge.innerText = "🐐 Blue Goat Badge";
-            badge.style.color = "blue";
-            localStorage.setItem("goatBadge", "blue");
-        } else if (type === "gold") {
-            badge.innerText = "🐐 Gold Goat Badge";
-            badge.style.color = "gold";
-            localStorage.setItem("goatBadge", "gold");
-        }
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = event.target.result;
+                    imgElement.style.maxWidth = "100%";
+                    postElement.appendChild(imgElement);
+                };
+                reader.readAsDataURL(imageFile);
+            }
 
-        badgeContainer.innerHTML = "";
-        badgeContainer.appendChild(badge);
-        alert("Badge purchased successfully!");
-    }
-
-    // Load saved profile data on page load
-    let savedUsername = localStorage.getItem("username");
-    let savedProfilePic = localStorage.getItem("profilePicture");
-    let savedBadge = localStorage.getItem("goatBadge");
-
-    if (savedUsername) {
-        document.getElementById("username").value = savedUsername;
-    }
-
-    if (savedProfilePic) {
-        document.getElementById("profile-picture").src = savedProfilePic;
-    }
-
-    if (savedBadge) {
-        purchaseBadge(savedBadge);
+            postsContainer.appendChild(postElement);
+            postContent.value = "";
+            imageUpload.value = "";
+        });
     }
 });
