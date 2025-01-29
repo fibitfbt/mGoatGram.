@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>mGoatGram</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
-  <!-- FontAwesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
+  <!-- FontAwesome 6 (versi lebih baru) -->
+  <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!-- Header -->
@@ -22,10 +22,35 @@
   <!-- Post Section -->
   <main>
     <section class="posts-container">
-      <!-- Posts will be dynamically rendered here -->
-      <p>Discover the latest posts from your vibrant community!</p>
+      <!-- Template Post (akan diisi dinamis) -->
+      <div class="post-template hidden">
+        <div class="post-header">
+          <img src="default-avatar.png" alt="Profile" class="post-avatar">
+          <div class="post-user">
+            <span class="username">Username</span>
+            <span class="post-time">2h ago</span>
+          </div>
+        </div>
+        <div class="post-content">
+          <p>Post content goes here...</p>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn"><i class="fas fa-heart"></i> 0</button>
+          <button class="comment-btn"><i class="fas fa-comment"></i> 0</button>
+        </div>
+      </div>
     </section>
-    <button class="new-post-btn">+ New Post</button>
+
+    <!-- New Post Modal -->
+    <div class="new-post-modal hidden">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <textarea placeholder="What's happening?" class="post-input"></textarea>
+        <button class="post-submit">Post</button>
+      </div>
+    </div>
+
+    <button class="new-post-btn" id="newPostButton">+ New Post</button>
   </main>
 
   <!-- Bottom Navigation -->
@@ -40,11 +65,13 @@
         <span>Profile</span>
       </a>
       <a href="followers.html" class="nav-item">
-        <i class="fas fa-user-friends"></i>
+        <i class="fas fa-users"></i>
         <span>Follow</span>
       </a>
     </nav>
     <p class="footer-credits">© 2025 mGoatGram | All rights reserved</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
