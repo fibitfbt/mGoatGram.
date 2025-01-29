@@ -1,28 +1,37 @@
 console.log('Script Loaded');
 
-document.getElementById("followUserBtn").addEventListener("click", function() {
-    let userToFollow = document.getElementById("userToFollow").value.trim();
-    if (userToFollow) {
-        let followingList = document.getElementById("followingList");
-        let listItem = document.createElement("li");
-        listItem.innerText = userToFollow;
-        followingList.appendChild(listItem);
-        localStorage.setItem("following_" + userToFollow, "true");
-        alert("You are now following " + userToFollow);
-    } else {
-        alert("Please enter a username to follow.");
-    }
+document.getElementById("new-post-btn").addEventListener("click", function() {
+    document.getElementById("post-modal").style.display = "block";
 });
 
-// Load following list from localStorage
-window.onload = function() {
-    let followingList = document.getElementById("followingList");
-    for (let i = 0; i < localStorage.length; i++) {
-        let key = localStorage.key(i);
-        if (key.startsWith("following_")) {
-            let listItem = document.createElement("li");
-            listItem.innerText = key.replace("following_", "");
-            followingList.appendChild(listItem);
+document.querySelector(".close").addEventListener("click", function() {
+    document.getElementById("post-modal").style.display = "none";
+});
+
+document.getElementById("submit-post-btn").addEventListener("click", function() {
+    let postContent = document.getElementById("post-content").value.trim();
+    let imageUpload = document.getElementById("image-upload").files[0];
+
+    if (postContent || imageUpload) {
+        let postsContainer = document.getElementById("posts-container");
+        let newPost = document.createElement("div");
+        newPost.classList.add("post");
+
+        let textElement = document.createElement("p");
+        textElement.innerText = postContent;
+        newPost.appendChild(textElement);
+
+        if (imageUpload) {
+            let imgElement = document.createElement("img");
+            imgElement.src = URL.createObjectURL(imageUpload);
+            imgElement.style.width = "100%";
+            imgElement.style.borderRadius = "10px";
+            newPost.appendChild(imgElement);
         }
+
+        postsContainer.appendChild(newPost);
+        document.getElementById("post-modal").style.display = "none";
+    } else {
+        alert("Please enter text or select an image to post.");
     }
-};
+});

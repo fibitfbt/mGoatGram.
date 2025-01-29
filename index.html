@@ -14,6 +14,17 @@
     <main>
         <button id="login-btn">Sign In with Worldcoin</button>
         <button id="new-post-btn">+ New Post</button>
+        
+        <div id="post-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create a New Post</h2>
+                <input type="text" id="post-content" placeholder="Enter your post content">
+                <input type="file" id="image-upload" accept="image/*">
+                <button id="submit-post-btn">Post</button>
+            </div>
+        </div>
+
         <div id="posts-container"></div>
     </main>
     <footer>
