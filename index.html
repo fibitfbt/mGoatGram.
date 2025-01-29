@@ -75,3 +75,20 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<!-- Di akhir index.html/profile.html -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const newPostButton = document.getElementById("newPostButton");
+  
+  newPostButton?.addEventListener("click", () => {
+    // Logika untuk buat post baru
+    const postContent = prompt("Masukkan konten post anda:");
+    if (postContent) {
+      // Simpan ke localStorage atau server
+      localStorage.setItem("newPost", postContent);
+      window.location.reload(); // Refresh halaman
+    }
+  });
+});
+</script>
