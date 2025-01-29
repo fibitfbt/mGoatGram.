@@ -70,3 +70,7 @@ document.querySelector('.close-modal').addEventListener('click', () => {
   // Load profile on page load
   loadProfile();
 });
+
+document.getElementById('myButton').addEventListener('click', function() {
+    // Tindakan apabila butang diklik
+});
