@@ -50,3 +50,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("Script loaded, setting up buttons.");
+
+    function navigate(page) {
+        console.log("Navigating to:", page);
+        window.location.href = page;
+    }
+
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            console.log("Button clicked:", event.target.innerText);
+        });
+    });
+});
