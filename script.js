@@ -1,19 +1,19 @@
 console.log('Script Loaded');
 
-document.getElementById("new-post-btn").addEventListener("click", function() {
+document.getElementById("new-post-btn")?.addEventListener("click", function() {
     document.getElementById("post-modal").style.display = "block";
 });
 
-document.querySelector(".close").addEventListener("click", function() {
+document.querySelector(".close")?.addEventListener("click", function() {
     document.getElementById("post-modal").style.display = "none";
 });
 
-document.getElementById("submit-post-btn").addEventListener("click", function() {
+document.getElementById("submit-post-btn")?.addEventListener("click", function() {
     let postContent = document.getElementById("post-content").value.trim();
     let imageUpload = document.getElementById("image-upload").files[0];
 
     if (postContent || imageUpload) {
-        let postsContainer = document.getElementById("posts-container");
+        let postsContainer = document.getElementById("posts-container") || document.getElementById("feed-container");
         let newPost = document.createElement("div");
         newPost.classList.add("post");
 
