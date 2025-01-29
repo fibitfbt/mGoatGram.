@@ -1,42 +1,14 @@
-console.log('Script Loaded');
+console.log('Profile script loaded');
 
-function navigate(page) {
-    window.location.href = page;
-}
-
-function openPostModal() {
-    document.getElementById("post-modal").style.display = "block";
-}
-
-function closePostModal() {
-    document.getElementById("post-modal").style.display = "none";
-}
-
-function submitPost() {
-    let postContent = document.getElementById("post-content").value.trim();
-    let imageUpload = document.getElementById("image-upload").files[0];
-
-    if (postContent || imageUpload) {
-        let postsContainer = document.getElementById("posts-container") || document.getElementById("feed-container");
-        let newPost = document.createElement("div");
-        newPost.classList.add("post");
-
-        let textElement = document.createElement("p");
-        textElement.innerText = postContent;
-        newPost.appendChild(textElement);
-
-        if (imageUpload) {
-            let imgElement = document.createElement("img");
-            imgElement.src = URL.createObjectURL(imageUpload);
-            imgElement.style.width = "100%";
-            imgElement.style.borderRadius = "10px";
-            newPost.appendChild(imgElement);
-        }
-
-        postsContainer.appendChild(newPost);
-        closePostModal();
-    } else {
-        alert("Please enter text or select an image to post.");
+function updateProfilePicture() {
+    let file = document.getElementById("upload-profile-pic").files[0];
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            document.getElementById("profile-picture").src = e.target.result;
+            localStorage.setItem("profilePicture", e.target.result);
+        };
+        reader.readAsDataURL(file);
     }
 }
 
@@ -50,15 +22,41 @@ function saveProfile() {
     }
 }
 
-function followUser() {
-    let userToFollow = document.getElementById("userToFollow").value.trim();
-    if (userToFollow) {
-        let followingList = document.getElementById("followingList");
-        let listItem = document.createElement("li");
-        listItem.innerText = userToFollow;
-        followingList.appendChild(listItem);
-        alert("You are now following " + userToFollow);
-    } else {
-        alert("Please enter a username to follow.");
+function purchaseBadge(type) {
+    let badgeContainer = document.getElementById("badge-display");
+    let badge = document.createElement("span");
+    badge.classList.add("badge");
+    
+    if (type === "blue") {
+        badge.innerText = "🐐 Blue Goat Badge";
+        badge.style.color = "blue";
+        localStorage.setItem("goatBadge", "blue");
+    } else if (type === "gold") {
+        badge.innerText = "🐐 Gold Goat Badge";
+        badge.style.color = "gold";
+        localStorage.setItem("goatBadge", "gold");
     }
+    
+    badgeContainer.innerHTML = "";
+    badgeContainer.appendChild(badge);
+    alert("Badge purchased successfully!");
 }
+
+// Load saved profile data
+window.onload = function() {
+    let savedUsername = localStorage.getItem("username");
+    let savedProfilePic = localStorage.getItem("profilePicture");
+    let savedBadge = localStorage.getItem("goatBadge");
+    
+    if (savedUsername) {
+        document.getElementById("username").value = savedUsername;
+    }
+    
+    if (savedProfilePic) {
+        document.getElementById("profile-picture").src = savedProfilePic;
+    }
+    
+    if (savedBadge) {
+        purchaseBadge(savedBadge);
+    }
+};

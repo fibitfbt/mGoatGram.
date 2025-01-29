@@ -14,8 +14,16 @@
     <main>
         <h2>Your Profile</h2>
 <p>Manage your profile and activity.</p>
+<div class="profile-section">
+    <img id="profile-picture" src="default-avatar.png" alt="Profile Picture" class="profile-pic">
+    <input type="file" id="upload-profile-pic" accept="image/*" onchange="updateProfilePicture()">
+</div>
 <input type="text" id="username" placeholder="Enter new username">
 <button onclick="saveProfile()" class="btn">Save Profile</button>
+<h3>Goat Badges</h3>
+<button onclick="purchaseBadge('blue')" class="btn badge-btn">Buy Blue Goat Badge - 3 WLD</button>
+<button onclick="purchaseBadge('gold')" class="btn badge-btn">Buy Gold Goat Badge - 6 WLD</button>
+<div id="badge-display"></div>
     </main>
     <footer>
         <div class="nav-buttons">
