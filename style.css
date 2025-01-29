@@ -1,61 +1,45 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #181818;
-    color: white;
     margin: 0;
     padding: 0;
+    background-color: #f8f9fa;
 }
 
 header {
-    background-color: #222;
+    background-color: #4CAF50;
+    color: white;
     padding: 10px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+textarea, input[type="file"] {
+    width: 80%;
     margin: 10px;
 }
 
-.btn {
-    background-color: #ff9800;
+button {
+    background-color: #008CBA;
     color: white;
     border: none;
     padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #005f73;
+}
+
+.post {
+    background: white;
+    margin: 10px auto;
+    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
+    width: 80%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-.btn:hover {
-    background-color: #e68900;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: #333;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.modal-content {
-    text-align: left;
-}
-
-.close {
-    float: right;
-    cursor: pointer;
-    color: white;
-}
-
-.nav-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
+img {
+    max-width: 100%;
+    margin-top: 10px;
 }
