@@ -1,1 +1,0 @@
-console.log('Next.js Integration Placeholder');
