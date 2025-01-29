@@ -47,6 +47,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     editProfileForm.classList.add('hidden');
+
+    // Handle New Post Button
+const newPostBtn = document.getElementById('newPostButton');
+const modal = document.querySelector('.new-post-modal');
+
+newPostBtn.addEventListener('click', () => {
+  modal.classList.remove('hidden');
+});
+
+// Handle Modal Close
+document.querySelector('.close-modal').addEventListener('click', () => {
+  modal.classList.add('hidden');
+});
   });
 
   // Cancel editing
