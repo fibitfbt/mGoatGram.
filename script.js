@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const postCard = document.createElement("div");
             postCard.classList.add("post-card");
 
-            let postContent = `<div class="post-content"><h3>New User</h3>`;
+            let postContent = `<div class="post-content"><h3>${post.username}</h3>`;
             if (post.text) {
                 postContent += `<p>${post.text}</p>`;
             }
@@ -99,7 +99,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
             if (postText || postImageInput.files.length > 0) {
                 let posts = loadPostsFromLocalStorage();
-                const newPost = { text: postText, image: null };
+                const newPost = { 
+                    username: localStorage.getItem("username") || "New User", 
+                    text: postText, 
+                    image: null 
+                };
 
                 if (postImageInput.files.length > 0) {
                     const reader = new FileReader();
