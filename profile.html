@@ -13,24 +13,24 @@
     </header>
     <main>
         <h2>Your Profile</h2>
-<p>Manage your profile and activity.</p>
-<div class="profile-section">
-    <img id="profile-picture" src="default-avatar.png" alt="Profile Picture" class="profile-pic">
-    <input type="file" id="upload-profile-pic" accept="image/*" onchange="updateProfilePicture()">
-</div>
-<input type="text" id="username" placeholder="Enter new username">
-<button onclick="saveProfile()" class="btn">Save Profile</button>
-<h3>Goat Badges</h3>
-<button onclick="purchaseBadge('blue')" class="btn badge-btn">Buy Blue Goat Badge - 3 WLD</button>
-<button onclick="purchaseBadge('gold')" class="btn badge-btn">Buy Gold Goat Badge - 6 WLD</button>
-<div id="badge-display"></div>
+        <p>Manage your profile and activity.</p>
+        <div class="profile-section">
+            <img id="profile-picture" src="default-avatar.png" alt="Profile Picture" class="profile-pic">
+            <input type="file" id="upload-profile-pic" accept="image/*">
+        </div>
+        <input type="text" id="username" placeholder="Enter new username">
+        <button id="saveButton" class="btn">Save Profile</button>
+        <h3>Goat Badges</h3>
+        <button class="btn badge-btn" data-badge-type="blue">Buy Blue Goat Badge - 3 WLD</button>
+        <button class="btn badge-btn" data-badge-type="gold">Buy Gold Goat Badge - 6 WLD</button>
+        <div id="badge-display"></div>
     </main>
     <footer>
         <div class="nav-buttons">
-            <button onclick="navigate('index.html')" class="btn">Home</button>
-            <button onclick="navigate('feed.html')" class="btn">Feed</button>
-            <button onclick="navigate('profile.html')" class="btn">Profile</button>
-            <button onclick="navigate('follow.html')" class="btn">Follow</button>
+            <button class="btn" data-page="index.html">Home</button>
+            <button class="btn" data-page="feed.html">Feed</button>
+            <button class="btn" data-page="profile.html">Profile</button>
+            <button class="btn" data-page="follow.html">Follow</button>
         </div>
         <p>© 2025 mGoatGram | All rights reserved</p>
     </footer>
