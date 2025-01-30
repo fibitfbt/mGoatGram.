@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up event listeners.");
 
-    // PROFILE HANDLING - Simpan Nama & Gambar Profil
+    // PENGURUSAN PROFILE
     const profilePicInput = document.getElementById("upload-profile-pic");
     const profilePic = document.getElementById("profile-picture");
     const saveButton = document.getElementById("saveButton");
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // LOAD PROFILE DATA FROM LOCAL STORAGE
     const savedUsername = localStorage.getItem("username");
     if (savedUsername) {
         usernameInput.value = savedUsername;
@@ -44,38 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         profilePic.src = savedProfilePic;
     }
 
-    // 🔥 PASTIKAN "NEW POST" BERFUNGSI DENGAN BETUL 🔥
-    const newPostButton = document.getElementById("newPostButton");
-    const postModal = document.getElementById("postModal");
-    const closeModal = document.querySelector(".close"); // Perbaiki close modal selector
-    const submitPostButton = document.getElementById("submitPost");
-    const postList = document.getElementById("post-list");
-
-    function savePostsToLocalStorage() {
-        localStorage.setItem("feedPosts", postList.innerHTML);
-    }
-
-    function loadPostsFromLocalStorage() {
-        const savedPosts = localStorage.getItem("feedPosts");
-        if (savedPosts) {
-            postList.innerHTML = savedPosts;
-        }
-    }
-
-    if (newPostButton) {
-        newPostButton.addEventListener("click", function() {
-            console.log("Opening New Post Modal");
-            postModal.style.display = "block";
-        });
-    }
-
-    if (closeModal) {
-        closeModal.addEventListener("click", function() {
-            console.log("Closing New Post Modal");
-            postModal.style.display = "none";
-        });
-    }
-document.addEventListener("DOMContentLoaded", function() {
+    // 🔥 PENGURUSAN "NEW POST" DI createPost.html 🔥
     const submitPostButton = document.getElementById("submitPost");
 
     if (submitPostButton) {
@@ -108,49 +76,35 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-});
-    if (submitPostButton) {
-        submitPostButton.addEventListener("click", function() {
-            const postText = document.getElementById("postText").value.trim();
-            const postImageInput = document.getElementById("postImage");
 
-            if (postText || postImageInput.files.length > 0) {
+    // 🔥 PENGURUSAN PAPARAN POST DI feed.html 🔥
+    const postListContainer = document.getElementById("post-list");
+
+    function loadPostsToFeed() {
+        const savedPosts = localStorage.getItem("feedPosts");
+        if (savedPosts && postListContainer) {
+            postListContainer.innerHTML = "";
+            const posts = JSON.parse(savedPosts);
+            posts.forEach(post => {
                 const postCard = document.createElement("div");
                 postCard.classList.add("post-card");
 
                 let postContent = `<div class="post-content"><h3>New User</h3>`;
-
-                if (postText) {
-                    postContent += `<p>${postText}</p>`;
+                if (post.text) {
+                    postContent += `<p>${post.text}</p>`;
                 }
-
-                if (postImageInput.files.length > 0) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        postContent += `<img src="${event.target.result}" class="post-image">`;
-                        postCard.innerHTML = postContent + `</div>`;
-                        postList.prepend(postCard);
-                        savePostsToLocalStorage();
-                    };
-                    reader.readAsDataURL(postImageInput.files[0]);
-                } else {
-                    postCard.innerHTML = postContent + `</div>`;
-                    postList.prepend(postCard);
-                    savePostsToLocalStorage();
+                if (post.image) {
+                    postContent += `<img src="${post.image}" class="post-image">`;
                 }
-
-                postModal.style.display = "none";
-                document.getElementById("postText").value = "";
-                postImageInput.value = "";
-            } else {
-                alert("Please write something or upload an image.");
-            }
-        });
+                postCard.innerHTML = postContent + `</div>`;
+                postListContainer.appendChild(postCard);
+            });
+        }
     }
 
-    loadPostsFromLocalStorage(); // Load post yang disimpan di Local Storage
+    loadPostsToFeed(); // Pastikan post dipaparkan di Feed
 
-    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI 🔥
+    // 🔥 NAVIGASI 🔥
     const feedNav = document.getElementById("nav-feed");
     const profileNav = document.getElementById("nav-profile");
     const followingNav = document.getElementById("nav-following");
