@@ -87,4 +87,29 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+    document.addEventListener("DOMContentLoaded", function() {
+    console.log("Script loaded, setting up buttons.");
+
+    // Navigasi butang profile
+    const profileButton = document.getElementById("profileButton");
+    if (profileButton) {
+        profileButton.addEventListener("click", function() {
+            navigate("profile.html");
+        });
+    }
+
+    // Navigasi butang lain
+    const feedButton = document.getElementById("feedButton");
+    if (feedButton) {
+        feedButton.addEventListener("click", function() {
+            navigate("feed.html");
+        });
+    }
+
+    const followButton = document.querySelector("[data-follow-button]");
+    if (followButton) {
+        followButton.addEventListener("click", function() {
+            alert("Follow button clicked!");
+        });
+    }
 });
