@@ -1,3 +1,4 @@
+if (!localStorage.getItem("followingList")) { localStorage.setItem("followingList", "[]"); }
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up event listeners.");
 
