@@ -93,31 +93,100 @@ document.addEventListener("DOMContentLoaded", function() {
                 let posts = JSON.parse(localStorage.getItem("feedPosts")) || [];
                 const newPost = {
                     username: localStorage.getItem("username") || "New User",
-                    text: postText,
-                    image: null
-                };
+   document.addEventListener("DOMContentLoaded", function() {
+    console.log("Script loaded, setting up event listeners.");
 
-                if (postImageInput.files.length > 0) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        newPost.image = event.target.result;
-                        posts.unshift(newPost);
-                        localStorage.setItem("feedPosts", JSON.stringify(posts));
-                        window.location.href = "feed.html";
-                    };
-                    reader.readAsDataURL(postImageInput.files[0]);
-                } else {
+    // 🔥 PENGURUSAN FEED & POST 🔥
+    const postList = document.getElementById("post-list");
+
+    function loadPostsFromLocalStorage() {
+        const savedPosts = localStorage.getItem("feedPosts");
+        return savedPosts ? JSON.parse(savedPosts) : [];
+    }
+
+    function displayPosts() {
+        const posts = loadPostsFromLocalStorage();
+        postList.innerHTML = "";
+
+        posts.forEach(post => {
+            const postCard = document.createElement("div");
+            postCard.classList.add("post-card");
+
+            let postContent = `<div class="post-content"><h3>${post.username}</h3>`;
+            if (post.text) {
+                postContent += `<p>${post.text}</p>`;
+            }
+            if (post.image) {
+                postContent += `<img src="${post.image}" class="post-image" style="width: 100%; max-height: 300px; object-fit: cover;">`;
+            }
+            postCard.innerHTML = postContent + `</div>`;
+            postList.appendChild(postCard);
+        });
+    }
+
+    if (postList) {
+        displayPosts();
+    }
+
+    // 🔥 PENGURUSAN "NEW POST" 🔥
+    const submitPostButton = document.getElementById("submitPost");
+
+    if (submitPostButton) {
+        submitPostButton.addEventListener("click", function() {
+            console.log("Post button clicked!");
+
+            const postText = document.getElementById("postText").value.trim();
+            const postImageInput = document.getElementById("postImage");
+            let posts = loadPostsFromLocalStorage();
+
+            const newPost = { 
+                username: localStorage.getItem("username") || "New User", 
+                text: postText, 
+                image: null 
+            };
+
+            if (postImageInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    newPost.image = event.target.result;
                     posts.unshift(newPost);
                     localStorage.setItem("feedPosts", JSON.stringify(posts));
+                    console.log("Post saved, redirecting to Feed...");
                     window.location.href = "feed.html";
-                }
+                };
+                reader.readAsDataURL(postImageInput.files[0]);
             } else {
-                alert("Please write something or upload an image.");
+                posts.unshift(newPost);
+                localStorage.setItem("feedPosts", JSON.stringify(posts));
+                console.log("Post saved, redirecting to Feed...");
+                window.location.href = "feed.html";
             }
         });
     }
-});
+
+    // 🔥 NAVIGASI 🔥
+    const feedNav = document.getElementById("nav-feed");
+    const profileNav = document.getElementById("nav-profile");
+    const followingNav = document.getElementById("nav-following");
+
+    if (feedNav) {
+        feedNav.addEventListener("click", function() {
+            window.location.href = "feed.html";
+        });
     }
+
+    if (profileNav) {
+        profileNav.addEventListener("click", function() {
+            window.location.href = "profile.html";
+        });
+    }
+
+    if (followingNav) {
+        followingNav.addEventListener("click", function() {
+            window.location.href = "following.html";
+        });
+    }
+});
 
     // 🔥 NAVIGASI 🔥
     const feedNav = document.getElementById("nav-feed");
