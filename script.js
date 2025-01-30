@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up event listeners.");
 
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 🔥 PASTIKAN "NEW POST" BERFUNGSI DENGAN BETUL 🔥
     const newPostButton = document.getElementById("newPostButton");
     const postModal = document.getElementById("postModal");
-    const closeModal = document.getElementById("closePostModal");
+    const closeModal = document.querySelector(".close"); // Perbaiki close modal selector
     const submitPostButton = document.getElementById("submitPost");
     const postList = document.getElementById("post-list");
 
@@ -65,12 +64,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (newPostButton) {
         newPostButton.addEventListener("click", function() {
+            console.log("Opening New Post Modal");
             postModal.style.display = "block";
         });
     }
 
     if (closeModal) {
         closeModal.addEventListener("click", function() {
+            console.log("Closing New Post Modal");
             postModal.style.display = "none";
         });
     }
