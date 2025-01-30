@@ -329,3 +329,14 @@ input[type="file"] {
     object-fit: cover;
     margin-bottom: 10px;
 }
+
+/* POST IMAGE STYLING - SAIZ SEDERHANA & RESPONSIF */
+.post-image {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin: 10px auto;
+}
