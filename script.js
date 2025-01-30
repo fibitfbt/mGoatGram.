@@ -112,4 +112,27 @@ document.addEventListener("DOMContentLoaded", function() {
     if (savedPosts) {
         postList.innerHTML = savedPosts;
     }
+
+    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI 🔥
+    const feedNav = document.getElementById("nav-feed");
+    const profileNav = document.getElementById("nav-profile");
+    const followingNav = document.getElementById("nav-following");
+
+    if (feedNav) {
+        feedNav.addEventListener("click", function() {
+            window.location.href = "feed.html";
+        });
+    }
+
+    if (profileNav) {
+        profileNav.addEventListener("click", function() {
+            window.location.href = "profile.html";
+        });
+    }
+
+    if (followingNav) {
+        followingNav.addEventListener("click", function() {
+            window.location.href = "following.html";
+        });
+    }
 });
