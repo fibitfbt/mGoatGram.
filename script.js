@@ -45,27 +45,38 @@ document.addEventListener("DOMContentLoaded", function() {
         profilePic.src = savedProfilePic;
     }
 
-    // 🔥 PASTIKAN "NEW POST" BERFUNGSI DI TELEFON 🔥
+    // 🔥 PASTIKAN "NEW POST" BERFUNGSI & DISIMPAN DALAM LOCAL STORAGE 🔥
     const newPostButton = document.getElementById("newPostButton");
     const postModal = document.getElementById("postModal");
     const closeModal = document.querySelector(".close");
     const submitPostButton = document.getElementById("submitPost");
     const postList = document.getElementById("post-list");
 
+    function savePostsToLocalStorage() {
+        localStorage.setItem("feedPosts", postList.innerHTML);
+    }
+
+    function loadPostsFromLocalStorage() {
+        const savedPosts = localStorage.getItem("feedPosts");
+        if (savedPosts) {
+            postList.innerHTML = savedPosts;
+        }
+    }
+
     if (newPostButton) {
-        newPostButton.addEventListener("touchstart", function() {
+        newPostButton.addEventListener("click", function() {
             postModal.style.display = "flex";
         });
     }
 
     if (closeModal) {
-        closeModal.addEventListener("touchstart", function() {
+        closeModal.addEventListener("click", function() {
             postModal.style.display = "none";
         });
     }
 
     if (submitPostButton) {
-        submitPostButton.addEventListener("touchstart", function() {
+        submitPostButton.addEventListener("click", function() {
             const postText = document.getElementById("postText").value.trim();
             const postImageInput = document.getElementById("postImage");
 
@@ -103,35 +114,27 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function savePostsToLocalStorage() {
-        localStorage.setItem("feedPosts", postList.innerHTML);
-    }
+    loadPostsFromLocalStorage(); // Load post yang disimpan di Local Storage
 
-    // LOAD POSTS FROM LOCAL STORAGE
-    const savedPosts = localStorage.getItem("feedPosts");
-    if (savedPosts) {
-        postList.innerHTML = savedPosts;
-    }
-
-    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI DI TELEFON 🔥
+    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI 🔥
     const feedNav = document.getElementById("nav-feed");
     const profileNav = document.getElementById("nav-profile");
     const followingNav = document.getElementById("nav-following");
 
     if (feedNav) {
-        feedNav.addEventListener("touchstart", function() {
+        feedNav.addEventListener("click", function() {
             window.location.href = "feed.html";
         });
     }
 
     if (profileNav) {
-        profileNav.addEventListener("touchstart", function() {
+        profileNav.addEventListener("click", function() {
             window.location.href = "profile.html";
         });
     }
 
     if (followingNav) {
-        followingNav.addEventListener("touchstart", function() {
+        followingNav.addEventListener("click", function() {
             window.location.href = "following.html";
         });
     }
