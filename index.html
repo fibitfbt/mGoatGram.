@@ -9,5 +9,18 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+<!-- Untuk Save Profile -->
+   <input type="text" id="username" placeholder="Enter new username">
+   <button id="saveButton" class="btn">Save Profile</button>
+
+   <!-- Untuk Follow User -->
+   <input type="text" id="userToFollow" placeholder="Enter username">
+   <button data-follow-button class="btn">Follow</button>
+   <ul id="followingList"></ul>
+
+   <!-- Untuk Submit Post -->
+   <textarea id="postContent"></textarea>
+   <button id="submitPost" class="btn">Post</button>
+   <div id="postsContainer"></div>
   </body>
 </html>
