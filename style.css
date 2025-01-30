@@ -310,3 +310,22 @@ input[type="file"] {
     object-fit: cover;
     margin-top: 10px;
 }
+
+/* POST IMAGE STYLING - SAIZ SEDERHANA */
+.post-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+/* PROFILE PICTURE STYLING - PASTIKAN IA BERFUNGSI */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
