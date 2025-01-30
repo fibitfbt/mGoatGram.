@@ -13,70 +13,39 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // MODAL HANDLING
-    const newPostButton = document.getElementById("newPostButton");
-    const postModal = document.getElementById("postModal");
-    const closeModal = document.querySelector(".close");
-    const submitPostButton = document.getElementById("submitPost");
+    // SAVE PROFILE FUNCTION
+    const saveButton = document.getElementById("saveButton");
+    if (saveButton) {
+        saveButton.addEventListener("click", function() {
+            const username = document.getElementById("username").value.trim();
+            const profilePicInput = document.getElementById("upload-profile-pic");
+            
+            if (username) {
+                localStorage.setItem("username", username);
+                alert("Username saved successfully!");
+            }
 
-    if (newPostButton) {
-        newPostButton.addEventListener("click", function() {
-            console.log("Opening New Post Modal");
-            postModal.style.display = "flex";
-        });
-    }
-
-    if (closeModal) {
-        closeModal.addEventListener("click", function() {
-            console.log("Closing New Post Modal");
-            postModal.style.display = "none";
-        });
-    }
-
-    if (submitPostButton) {
-        submitPostButton.addEventListener("click", function() {
-            console.log("Submitting New Post");
-            const postText = document.getElementById("postText").value.trim();
-            const postImageInput = document.getElementById("postImage");
-
-            if (postText || postImageInput.files.length > 0) {
-                const postList = document.getElementById("post-list");
-                const postCard = document.createElement("div");
-                postCard.classList.add("post-card");
-
-                let postContent = `<div class="post-content"><h3>New User</h3>`;
-
-                if (postText) {
-                    postContent += `<p>${postText}</p>`;
-                }
-
-                if (postImageInput.files.length > 0) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        postContent += `<img src="${event.target.result}" class="post-avatar">`;
-                        postCard.innerHTML = postContent + `</div>`;
-                        postList.prepend(postCard);
-                        localStorage.setItem("feedPosts", postList.innerHTML);
-                    };
-                    reader.readAsDataURL(postImageInput.files[0]);
-                } else {
-                    postCard.innerHTML = postContent + `</div>`;
-                    postList.prepend(postCard);
-                    localStorage.setItem("feedPosts", postList.innerHTML);
-                }
-
-                postModal.style.display = "none";
-                document.getElementById("postText").value = "";
-                postImageInput.value = "";
-            } else {
-                alert("Please write something or upload an image.");
+            if (profilePicInput.files.length > 0) {
+                const file = profilePicInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    localStorage.setItem("profilePic", event.target.result);
+                    document.getElementById("profile-picture").src = event.target.result;
+                    alert("Profile picture updated!");
+                };
+                reader.readAsDataURL(file);
             }
         });
     }
 
-    // LOAD POSTS FROM LOCAL STORAGE
-    const savedPosts = localStorage.getItem("feedPosts");
-    if (savedPosts) {
-        document.getElementById("post-list").innerHTML = savedPosts;
+    // LOAD PROFILE DATA FROM LOCAL STORAGE
+    const savedUsername = localStorage.getItem("username");
+    if (savedUsername) {
+        document.getElementById("username").value = savedUsername;
+    }
+
+    const savedProfilePic = localStorage.getItem("profilePic");
+    if (savedProfilePic) {
+        document.getElementById("profile-picture").src = savedProfilePic;
     }
 });
