@@ -13,27 +13,32 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // POST HANDLING - SIMPAN KE LOCAL STORAGE
+    // MODAL HANDLING - MEMASTIKAN "NEW POST" BERFUNGSI
     const newPostButton = document.getElementById("newPostButton");
     const postModal = document.getElementById("postModal");
     const closeModal = document.querySelector(".close");
     const submitPostButton = document.getElementById("submitPost");
-    const postList = document.getElementById("post-list");
 
     if (newPostButton) {
         newPostButton.addEventListener("click", function() {
+            console.log("Opening New Post Modal");
             postModal.style.display = "flex";
         });
     }
 
     if (closeModal) {
         closeModal.addEventListener("click", function() {
+            console.log("Closing New Post Modal");
             postModal.style.display = "none";
         });
     }
 
+    // POST HANDLING - MENYIMPAN POST KE LOCAL STORAGE
+    const postList = document.getElementById("post-list");
+
     if (submitPostButton) {
         submitPostButton.addEventListener("click", function() {
+            console.log("Submitting New Post");
             const postText = document.getElementById("postText").value.trim();
             const postImageInput = document.getElementById("postImage");
 
@@ -81,4 +86,3 @@ document.addEventListener("DOMContentLoaded", function() {
         postList.innerHTML = savedPosts;
     }
 });
-
