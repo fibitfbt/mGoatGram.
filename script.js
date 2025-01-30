@@ -7,11 +7,18 @@ function navigate(page) {
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up buttons.");
 
-    // Fungsi saveProfile yang betul
+    // =================================
+    // 1. Fungsi Save Profile (Diperbaiki)
+    // =================================
     function saveProfile() {
-        let username = document.getElementById("username").value.trim();
-        
-        if (username === "") {
+        const usernameInput = document.getElementById("username");
+        if (!usernameInput) {
+            console.error("Username input not found!");
+            return;
+        }
+
+        const username = usernameInput.value.trim();
+        if (!username) {
             alert("Username cannot be empty.");
             return;
         }
@@ -22,30 +29,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Event listener untuk save profile
-    let saveButton = document.getElementById("saveButton");
+    const saveButton = document.getElementById("saveButton");
     if (saveButton) {
         saveButton.addEventListener("click", saveProfile);
     }
 
-    // Event listener umum untuk semua butang
-    let buttons = document.querySelectorAll("button");
+    // =================================
+    // 2. Event Listener Umum untuk Logging (Diperbaiki)
+    // =================================
+    const buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
         button.addEventListener("click", function(event) {
             console.log("Button clicked:", event.target.innerText);
         });
     });
 
-    // Fungsi submit post
-    let submitPostButton = document.getElementById("submitPost");
-    if (submitPostButton) {
+    // =================================
+    // 3. Fungsi Submit Post (Diperbaiki)
+    // =================================
+    const submitPostButton = document.getElementById("submitPost");
+    const postContentInput = document.getElementById("postContent");
+    const postsContainer = document.getElementById("postsContainer");
+
+    if (submitPostButton && postContentInput && postsContainer) {
         submitPostButton.addEventListener("click", function() {
-            let postContent = document.getElementById("postContent").value.trim();
+            const postContent = postContentInput.value.trim();
             if (postContent) {
-                let postsContainer = document.getElementById("postsContainer");
-                let newPost = document.createElement("div");
+                const newPost = document.createElement("div");
                 newPost.innerText = postContent;
                 postsContainer.appendChild(newPost);
-                document.getElementById("postContent").value = "";
+                postContentInput.value = "";
                 alert("Post created successfully!");
             } else {
                 alert("Please enter content before posting.");
@@ -53,17 +66,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Fungsi follow user
-    let followButton = document.querySelector("button[onclick='followUser()']");
-    if (followButton) {
+    // =================================
+    // 4. Fungsi Follow User (Diperbaiki)
+    // =================================
+    const followButton = document.querySelector("[data-follow-button]");
+    const userToFollowInput = document.getElementById("userToFollow");
+    const followingList = document.getElementById("followingList");
+
+    if (followButton && userToFollowInput && followingList) {
         followButton.addEventListener("click", function() {
-            let username = document.getElementById("userToFollow").value.trim();
+            const username = userToFollowInput.value.trim();
             if (username) {
-                let followingList = document.getElementById("followingList");
-                let newFollow = document.createElement("li");
+                const newFollow = document.createElement("li");
                 newFollow.innerText = username;
                 followingList.appendChild(newFollow);
-                document.getElementById("userToFollow").value = "";
+                userToFollowInput.value = "";
                 alert("You are now following " + username);
             } else {
                 alert("Please enter a username to follow.");
