@@ -166,3 +166,22 @@ h1 {
     font-size: 14px;
     color: #555;
 }
+
+/* Floating Action Button (FAB) untuk New Post */
+.fab {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #1e3d35;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
