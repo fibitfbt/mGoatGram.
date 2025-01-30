@@ -1,39 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>mGoatGram Profile</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>🐐 mGoatGram</h1>
-        <p>Your Profile</p>
     </header>
-    <main>
+
+    <main class="profile-container">
         <h2>Your Profile</h2>
         <p>Manage your profile and activity.</p>
+
         <div class="profile-section">
             <img id="profile-picture" src="default-avatar.png" alt="Profile Picture" class="profile-pic">
             <input type="file" id="upload-profile-pic" accept="image/*">
         </div>
-        <input type="text" id="username" placeholder="Enter new username">
-        <button id="saveButton" class="btn">Save Profile</button>
+
+        <input type="text" id="username" class="input-field" placeholder="Enter new username">
+        <button id="saveButton" class="btn-primary">Save Profile</button>
+
         <h3>Goat Badges</h3>
-        <button class="btn badge-btn" data-badge-type="blue">Buy Blue Goat Badge - 3 WLD</button>
-        <button class="btn badge-btn" data-badge-type="gold">Buy Gold Goat Badge - 6 WLD</button>
-        <div id="badge-display"></div>
-    </main>
-    <footer>
-        <div class="nav-buttons">
-            <button class="btn" data-page="index.html">Home</button>
-            <button class="btn" data-page="feed.html">Feed</button>
-            <button class="btn" data-page="profile.html">Profile</button>
-            <button class="btn" data-page="follow.html">Follow</button>
-            <script src="script.js"></script>
+        <div class="badge-container">
+            <button class="btn-secondary">Buy Blue Goat Badge - 3 WLD</button>
+            <button class="btn-secondary">Buy Gold Goat Badge - 6 WLD</button>
         </div>
-        <p>© 2025 mGoatGram | All rights reserved</p>
-    </footer>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <span class="icon">📜</span>
+            <span class="label">Feed</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">👤</span>
+            <span class="label">Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <span class="icon">👥</span>
+            <span class="label">Following</span>
+        </a>
+    </nav>
 </body>
 </html>
