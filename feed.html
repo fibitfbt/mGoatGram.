@@ -1,29 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed</title>
+    <title>mGoatGram Feed</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>🐐 mGoatGram</h1>
-        <p>Latest Posts</p>
-    </header>
-    <main>
-        <h2>Latest Posts</h2>
-<div id="feed-container"></div>
-    </main>
-    <footer>
-        <div class="nav-buttons">
-            <button onclick="navigate('index.html')" class="btn">Home</button>
-            <button onclick="navigate('feed.html')" class="btn">Feed</button>
-            <button onclick="navigate('profile.html')" class="btn">Profile</button>
-            <button onclick="navigate('follow.html')" class="btn">Follow</button>
+    <header class="header">
+        <div class="logo-container">
+            <img src="goat-logo.png" alt="Goat Logo" class="logo">
+            <h1>🐐 mGoatGram</h1>
         </div>
-        <p>© 2025 mGoatGram | All rights reserved</p>
-    </footer>
-    <script src="script.js"></script>
+    </header>
+
+    <main class="feed-container">
+        <h2>Latest Posts</h2>
+        <div class="post-card">
+            <img src="default-avatar.png" alt="User Avatar" class="post-avatar">
+            <div class="post-content">
+                <h3>John Doe</h3>
+                <p>This is a sample post in mGoatGram. Stay connected!</p>
+            </div>
+        </div>
+        <div class="post-card">
+            <img src="default-avatar.png" alt="User Avatar" class="post-avatar">
+            <div class="post-content">
+                <h3>Jane Doe</h3>
+                <p>Sharing my thoughts with everyone. Love this app!</p>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" data-page="feed.html">
+            <span class="icon">📜</span>
+            <span class="label">Feed</span>
+        </a>
+        <a href="#" class="nav-item" data-page="profile.html">
+            <span class="icon">👤</span>
+            <span class="label">Profile</span>
+        </a>
+        <a href="#" class="nav-item" data-page="following.html">
+            <span class="icon">👥</span>
+            <span class="label">Following</span>
+        </a>
+    </nav>
 </body>
 </html>
