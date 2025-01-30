@@ -34,6 +34,13 @@ body {
     height: 40px;
 }
 
+h1 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 24px;
+}
+
 .profile-container {
     flex: 1;
     padding: 20px;
