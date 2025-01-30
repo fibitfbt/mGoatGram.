@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,24 +12,24 @@
     </header>
 
     <main class="create-post-container">
-        <button id="newPostButton" class="new-post-btn">New Post</button>
+        <button id="openPostModal" class="new-post-btn">New Post</button>
 
         <!-- MODAL UNTUK NEW POST -->
-        <div id="postModal" class="modal">
+        <div id="postModal" class="modal" style="display: none;">
             <div class="modal-content">
-                <span class="close">&times;</span>
+                <span id="closePostModal" class="close">&times;</span>
                 <h2>Create a New Post</h2>
                 <textarea id="postText" placeholder="Write something..."></textarea>
                 <input type="file" id="postImage" accept="image/*">
-                <button id="newPostButton" class="new-post-btn">New Post</button>
+                <button id="submitPost" class="new-post-btn">Submit Post</button>
             </div>
         </div>
     </main>
 
     <nav class="bottom-nav">
-        <a href="feed.html" class="nav-item">📜 Feed</a>
-        <a href="profile.html" class="nav-item">👤 Profile</a>
-        <a href="following.html" class="nav-item">👥 Following</a>
+        <a href="feed.html" id="nav-feed" class="nav-item">📜 Feed</a>
+        <a href="profile.html" id="nav-profile" class="nav-item">👤 Profile</a>
+        <a href="following.html" id="nav-following" class="nav-item">👥 Following</a>
     </nav>
 
     <script src="script.js"></script>
