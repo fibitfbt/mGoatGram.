@@ -75,7 +75,40 @@ document.addEventListener("DOMContentLoaded", function() {
             postModal.style.display = "none";
         });
     }
+document.addEventListener("DOMContentLoaded", function() {
+    const submitPostButton = document.getElementById("submitPost");
 
+    if (submitPostButton) {
+        submitPostButton.addEventListener("click", function() {
+            const postText = document.getElementById("postText").value.trim();
+            const postImageInput = document.getElementById("postImage");
+
+            if (postText || postImageInput.files.length > 0) {
+                let savedPosts = localStorage.getItem("feedPosts");
+                let postList = savedPosts ? JSON.parse(savedPosts) : [];
+
+                const newPost = { text: postText, image: null };
+
+                if (postImageInput.files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        newPost.image = event.target.result;
+                        postList.unshift(newPost);
+                        localStorage.setItem("feedPosts", JSON.stringify(postList));
+                        window.location.href = "feed.html"; // Navigasi balik ke Feed
+                    };
+                    reader.readAsDataURL(postImageInput.files[0]);
+                } else {
+                    postList.unshift(newPost);
+                    localStorage.setItem("feedPosts", JSON.stringify(postList));
+                    window.location.href = "feed.html"; // Navigasi balik ke Feed
+                }
+            } else {
+                alert("Please write something or upload an image.");
+            }
+        });
+    }
+});
     if (submitPostButton) {
         submitPostButton.addEventListener("click", function() {
             const postText = document.getElementById("postText").value.trim();
