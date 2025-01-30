@@ -57,6 +57,20 @@ document.addEventListener("DOMContentLoaded", function() {
     function navigate(page) {
         console.log("Navigating to:", page);
         window.location.href = page;
+        function saveProfile() {
+    let username = document.getElementById("username").value.trim();
+    
+    if (username === "") {
+        alert("Username cannot be empty.");
+        return;
+    }
+
+    // Simpan username ke Local Storage atau kirim ke server
+    localStorage.setItem("username", username);
+    alert("Profile saved successfully!");
+    
+    console.log("Profile saved:", username);
+        }
     }
 
     let buttons = document.querySelectorAll("button");
