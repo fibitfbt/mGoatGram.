@@ -11,30 +11,31 @@
 <body>
     <header class="header">
         <div class="logo-container">
+            <img src="goat-logo.png" alt="Goat Logo" class="logo">
             <h1>🐐 mGoatGram</h1>
         </div>
     </header>
 
     <main class="feed-container">
         <h2>Latest Posts</h2>
-        <div class="post-card">
-            <img src="default-avatar.png" alt="User Avatar" class="post-avatar">
-            <div class="post-content">
-                <h3>John Doe</h3>
-                <p>This is a sample post in mGoatGram. Stay connected!</p>
-            </div>
-        </div>
-        <div class="post-card">
-            <img src="default-avatar.png" alt="User Avatar" class="post-avatar">
-            <div class="post-content">
-                <h3>Jane Doe</h3>
-                <p>Sharing my thoughts with everyone. Love this app!</p>
-            </div>
+        <div id="post-list">
+            <!-- Post yang dibuat akan muncul di sini -->
         </div>
     </main>
 
     <!-- Butang New Post -->
     <button class="fab" id="newPostButton">✏️ New Post</button>
+
+    <!-- Modal untuk buat post baru -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create a New Post</h2>
+            <textarea id="postText" placeholder="Write something..."></textarea>
+            <input type="file" id="postImage" accept="image/*">
+            <button id="submitPost" class="btn-primary">Post</button>
+        </div>
+    </div>
 
     <nav class="bottom-nav">
         <a href="#" class="nav-item active" data-page="feed.html">
