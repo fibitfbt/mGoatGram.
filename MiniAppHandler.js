@@ -3,7 +3,7 @@ console.log('Mini App Handler Loaded');
 
 const API_KEY = "api_a2V5X2MxOWE1ZjBkNGZiMTdkNWQ2OWZmMWUwNzAzOTlkYzkzOnNrXzdhYjJmYjJjZmU1YjQ2MGZlYzRjN2EyM2E0OTE2Nzc4N2QwZDNmYjAyZTkyNmYyNg";
 const APP_ID = "app_0cb3ee4cf388a7d41c9401e1fe0b950a";
-const WORLDCOIN_VERIFY_URL = "https://developer.worldcoin.org/api/v2/verify/app_0cb3ee4cf388a7d41c9401e1fe0b950a;
+const WORLDCOIN_VERIFY_URL = "https://developer.worldcoin.org/api/v2/verify/" + APP_ID;
 
 async function authenticateWithWorldcoin(nullifierHash, proof, merkleRoot, verificationLevel, action) {
     try {
