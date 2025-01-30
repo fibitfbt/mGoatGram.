@@ -1,51 +1,51 @@
 
-// Fungsi navigasi untuk butang footer
-function navigate(page) {
-    console.log("Navigating to:", page);
-    window.location.href = page;
-}
-
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("Script loaded, setting up buttons.");
+    console.log("Script loaded, setting up event listeners.");
 
-    // Event delegation untuk semua butang
-    document.body.addEventListener("click", function(event) {
-        if (event.target.matches(".btn")) {
-            console.log("Button clicked:", event.target.id);
-
-            // Handle butang profil
-            if (event.target.id === "profileButton") {
-                navigate("profile.html");
+    // NAVIGATION
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.addEventListener("click", function(event) {
+            event.preventDefault();
+            const page = this.getAttribute("data-page");
+            if (page) {
+                window.location.href = page;
             }
-
-            // Handle butang feed
-            if (event.target.id === "feedButton") {
-                navigate("feed.html");
-            }
-
-            // Handle butang save profile
-            if (event.target.id === "saveButton") {
-                saveProfile();
-            }
-        }
+        });
     });
 
-    // Fungsi Save Profile
-    function saveProfile() {
-        const usernameInput = document.getElementById("username");
-        if (!usernameInput) {
-            console.error("Username input not found!");
-            return;
-        }
+    // SAVE PROFILE FUNCTION
+    const saveButton = document.getElementById("saveButton");
+    if (saveButton) {
+        saveButton.addEventListener("click", function() {
+            const username = document.getElementById("username").value.trim();
+            const profilePicInput = document.getElementById("upload-profile-pic");
+            
+            if (username) {
+                localStorage.setItem("username", username);
+                alert("Username saved successfully!");
+            }
 
-        const username = usernameInput.value.trim();
-        if (!username) {
-            alert("Username cannot be empty.");
-            return;
-        }
+            if (profilePicInput.files.length > 0) {
+                const file = profilePicInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    localStorage.setItem("profilePic", event.target.result);
+                    document.getElementById("profile-picture").src = event.target.result;
+                    alert("Profile picture updated!");
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 
-        localStorage.setItem("username", username);
-        alert("Profile saved successfully!");
-        console.log("Profile saved:", username);
+    // LOAD PROFILE DATA FROM LOCAL STORAGE
+    const savedUsername = localStorage.getItem("username");
+    if (savedUsername) {
+        document.getElementById("username").value = savedUsername;
+    }
+
+    const savedProfilePic = localStorage.getItem("profilePic");
+    if (savedProfilePic) {
+        document.getElementById("profile-picture").src = savedProfilePic;
     }
 });
