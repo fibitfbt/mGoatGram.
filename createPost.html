@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,21 +8,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>🐐 mGoatGram</h1>
-        <p>Create a New Post</p>
     </header>
-    <main>
-        <textarea id="postContent" placeholder="Enter your post content..."></textarea>
-        <input type="file" id="imageUpload" accept="image/*">
-        <button id="submitPost">Post</button>
-        <h2>Your Posts</h2>
-        <div id="postsContainer"></div>
+
+    <main class="create-post-container">
+        <button id="newPostButton" class="new-post-btn">New Post</button>
+
+        <!-- MODAL UNTUK NEW POST -->
+        <div id="postModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Create a New Post</h2>
+                <textarea id="postText" placeholder="Write something..."></textarea>
+                <input type="file" id="postImage" accept="image/*">
+                <button id="submitPost" class="btn-primary">Post</button>
+            </div>
+        </div>
     </main>
-    <footer>
-        <button onclick="window.location.href='index.html'">Home</button>
-        <button onclick="window.location.href='profile.html'">Profile</button>
-    </footer>
+
+    <nav class="bottom-nav">
+        <a href="feed.html" class="nav-item">📜 Feed</a>
+        <a href="profile.html" class="nav-item">👤 Profile</a>
+        <a href="following.html" class="nav-item">👥 Following</a>
+    </nav>
+
     <script src="script.js"></script>
 </body>
 </html>
