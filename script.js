@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up event listeners.");
 
-    // PROFILE HANDLING - Menyimpan Nama & Gambar Profil
+    // PROFILE HANDLING - Simpan Nama & Gambar Profil
     const profilePicInput = document.getElementById("upload-profile-pic");
     const profilePic = document.getElementById("profile-picture");
     const saveButton = document.getElementById("saveButton");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
         profilePic.src = savedProfilePic;
     }
 
-    // PASTIKAN "NEW POST" MASIH BERFUNGSI
+    // 🔥 PASTIKAN "NEW POST" BERFUNGSI DI TELEFON 🔥
     const newPostButton = document.getElementById("newPostButton");
     const postModal = document.getElementById("postModal");
     const closeModal = document.querySelector(".close");
@@ -53,19 +53,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const postList = document.getElementById("post-list");
 
     if (newPostButton) {
-        newPostButton.addEventListener("click", function() {
+        newPostButton.addEventListener("touchstart", function() {
             postModal.style.display = "flex";
         });
     }
 
     if (closeModal) {
-        closeModal.addEventListener("click", function() {
+        closeModal.addEventListener("touchstart", function() {
             postModal.style.display = "none";
         });
     }
 
     if (submitPostButton) {
-        submitPostButton.addEventListener("click", function() {
+        submitPostButton.addEventListener("touchstart", function() {
             const postText = document.getElementById("postText").value.trim();
             const postImageInput = document.getElementById("postImage");
 
@@ -113,25 +113,25 @@ document.addEventListener("DOMContentLoaded", function() {
         postList.innerHTML = savedPosts;
     }
 
-    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI 🔥
+    // 🔥 NAVIGASI - PASTIKAN BUTTON NAVIGATION BERFUNGSI DI TELEFON 🔥
     const feedNav = document.getElementById("nav-feed");
     const profileNav = document.getElementById("nav-profile");
     const followingNav = document.getElementById("nav-following");
 
     if (feedNav) {
-        feedNav.addEventListener("click", function() {
+        feedNav.addEventListener("touchstart", function() {
             window.location.href = "feed.html";
         });
     }
 
     if (profileNav) {
-        profileNav.addEventListener("click", function() {
+        profileNav.addEventListener("touchstart", function() {
             window.location.href = "profile.html";
         });
     }
 
     if (followingNav) {
-        followingNav.addEventListener("click", function() {
+        followingNav.addEventListener("touchstart", function() {
             window.location.href = "following.html";
         });
     }
