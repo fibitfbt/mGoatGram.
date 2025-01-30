@@ -235,3 +235,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+function renderFeed() {
+    let feedContainer = document.getElementById("feedContainer");
+    if (!feedContainer) return;
+
+    let posts = JSON.parse(localStorage.getItem("feedPosts")) || [];
+    feedContainer.innerHTML = "";
+
+    posts.forEach((post, index) => {
+        let postElement = document.createElement("div");
+        postElement.className = "post";
+        postElement.innerHTML = `<p>${post}</p>`;
+        feedContainer.appendChild(postElement);
+    });
+}
+
+// Ensure feed updates after post submission
+document.addEventListener("DOMContentLoaded", renderFeed);
