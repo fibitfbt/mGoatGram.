@@ -81,39 +81,42 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // 🔥 PENGURUSAN "NEW POST" 🔥
+    document.addEventListener("DOMContentLoaded", function() {
     const submitPostButton = document.getElementById("submitPost");
 
     if (submitPostButton) {
         submitPostButton.addEventListener("click", function() {
-            console.log("Post button clicked!");
-
             const postText = document.getElementById("postText").value.trim();
             const postImageInput = document.getElementById("postImage");
-            let posts = loadPostsFromLocalStorage();
 
-            const newPost = { 
-                username: localStorage.getItem("username") || "New User", 
-                text: postText, 
-                image: null 
-            };
+            if (postText || postImageInput.files.length > 0) {
+                let posts = JSON.parse(localStorage.getItem("feedPosts")) || [];
+                const newPost = {
+                    username: localStorage.getItem("username") || "New User",
+                    text: postText,
+                    image: null
+                };
 
-            if (postImageInput.files.length > 0) {
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    newPost.image = event.target.result;
+                if (postImageInput.files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        newPost.image = event.target.result;
+                        posts.unshift(newPost);
+                        localStorage.setItem("feedPosts", JSON.stringify(posts));
+                        window.location.href = "feed.html";
+                    };
+                    reader.readAsDataURL(postImageInput.files[0]);
+                } else {
                     posts.unshift(newPost);
                     localStorage.setItem("feedPosts", JSON.stringify(posts));
-                    console.log("Post saved, redirecting to Feed...");
                     window.location.href = "feed.html";
-                };
-                reader.readAsDataURL(postImageInput.files[0]);
+                }
             } else {
-                posts.unshift(newPost);
-                localStorage.setItem("feedPosts", JSON.stringify(posts));
-                console.log("Post saved, redirecting to Feed...");
-                window.location.href = "feed.html";
+                alert("Please write something or upload an image.");
             }
         });
+    }
+});
     }
 
     // 🔥 NAVIGASI 🔥
