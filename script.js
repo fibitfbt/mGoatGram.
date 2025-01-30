@@ -1,12 +1,33 @@
 // Fungsi navigasi untuk butang footer
 function navigate(page) {
+    console.log("Navigating to:", page);
     window.location.href = page;
 }
 
-// Tambahkan event listener untuk butang yang tidak berfungsi
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Script loaded, setting up buttons.");
 
+    // Fungsi saveProfile yang betul
+    function saveProfile() {
+        let username = document.getElementById("username").value.trim();
+        
+        if (username === "") {
+            alert("Username cannot be empty.");
+            return;
+        }
+
+        localStorage.setItem("username", username);
+        alert("Profile saved successfully!");
+        console.log("Profile saved:", username);
+    }
+
+    // Event listener untuk save profile
+    let saveButton = document.getElementById("saveButton");
+    if (saveButton) {
+        saveButton.addEventListener("click", saveProfile);
+    }
+
+    // Event listener umum untuk semua butang
     let buttons = document.querySelectorAll("button");
     buttons.forEach(button => {
         button.addEventListener("click", function(event) {
@@ -49,34 +70,4 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("Script loaded, setting up buttons.");
-
-    function navigate(page) {
-        console.log("Navigating to:", page);
-        window.location.href = page;
-        function saveProfile() {
-    let username = document.getElementById("username").value.trim();
-    
-    if (username === "") {
-        alert("Username cannot be empty.");
-        return;
-    }
-
-    // Simpan username ke Local Storage atau kirim ke server
-    localStorage.setItem("username", username);
-    alert("Profile saved successfully!");
-    
-    console.log("Profile saved:", username);
-        }
-    }
-
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach(button => {
-        button.addEventListener("click", function(event) {
-            console.log("Button clicked:", event.target.innerText);
-        });
-    });
 });
