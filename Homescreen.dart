@@ -9,18 +9,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   List<PostModel> posts = [
-    PostModel(
-        username: 'Ayu Syafika',
-        content: 'Ini adalah tweet pertama saya!',
-        date: '2025-02-07',
-        likes: 0,
-        comments: []),
-    PostModel(
-        username: 'Ahmad',
-        content: 'Selamat pagi semua!',
-        date: '2025-02-06',
-        likes: 5,
-        comments: ['Bagus!']),
+    PostModel(username: 'Ayu Syafika', content: 'Ini adalah tweet pertama saya!', date: '2025-02-07', likes: 0, comments: []),
+    PostModel(username: 'Ahmad', content: 'Selamat pagi semua!', date: '2025-02-06', likes: 5, comments: ['Bagus!']),
   ];
 
   @override
@@ -36,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Add tweet logic
-        },
+        onPressed: () {},
         child: Icon(Icons.add),
       ),
     );
