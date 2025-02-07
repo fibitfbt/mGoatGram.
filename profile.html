@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mGoatGram Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-container">
+            <h1>🐐 mGoatGram</h1>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <h2>Your Profile</h2>
+        <p>Manage your profile and activity.</p>
+
+        <div class="profile-section">
+            <img id="profile-picture" src="default-avatar.png" alt="Profile Picture" class="profile-pic">
+            <label for="upload-profile-pic" class="file-upload-btn">Choose File</label>
+            <input type="file" id="upload-profile-pic" accept="image/*" hidden>
+        </div>
+
+        <input type="text" id="username" class="input-field" placeholder="Enter new username">
+        <button id="saveButton" class="btn-primary">Save Profile</button>
+
+        <h3>Goat Badges</h3>
+        <div class="badge-container">
+            <button class="btn-secondary">Buy Blue Goat Badge - 3 WLD</button>
+            <button class="btn-secondary">Buy Gold Goat Badge - 6 WLD</button>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+    <a href="feed.html" class="nav-item">📜 Feed</a>
+    <a href="profile.html" class="nav-item">👤 Profile</a>
+    <a href="following.html" class="nav-item">👥 Following</a>
+</nav>
+</body>
+</html>
